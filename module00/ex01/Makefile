@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: winnitytrinnity <winnitytrinnity@studen    +#+  +:+       +#+         #
+#    By: mmisumi <mmisumi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/29 15:54:59 by mmisumi           #+#    #+#              #
-#    Updated: 2025/10/07 22:22:24 by winnitytrin      ###   ########.fr        #
+#    Updated: 2025/10/08 13:28:41 by mmisumi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = phonebook
 
 CC = c++
 
-FLAGS = -std=c++11 -Wall -Wextra -Werror -Iincludes
+#it is not mandatory for codam students to follow the c++11 rules
+FLAGS = -std=c++17 -Wall -Wextra -Werror -Iincludes
 
 SRCS	:= src/Main.cpp src/PhoneBook.cpp src/Contact.cpp
 OBJS	:= $(patsubst src/%.cpp, .obj/%.o, $(SRCS))

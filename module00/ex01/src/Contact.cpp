@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: winnitytrinnity <winnitytrinnity@studen    +#+  +:+       +#+        */
+/*   By: mmisumi <mmisumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 18:18:45 by winnitytrin       #+#    #+#             */
-/*   Updated: 2025/10/07 22:43:12 by winnitytrin      ###   ########.fr       */
+/*   Updated: 2025/10/08 15:35:06 by mmisumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
