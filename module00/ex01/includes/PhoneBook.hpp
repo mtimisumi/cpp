@@ -6,7 +6,7 @@
 /*   By: mmisumi <mmisumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 19:48:31 by mmisumi           #+#    #+#             */
-/*   Updated: 2025/10/08 16:07:10 by mmisumi          ###   ########.fr       */
+/*   Updated: 2025/10/08 16:53:55 by mmisumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ class PhoneBook
 		void setContact(Contact contact);
 		void printContacts();
 		void selectContact();
-		int  isUserInput(std::string input);
-	
+		
 	private:
+		int  isUserInput(std::string input);
+
 		Contact	m_contacts[8];
 		int 	m_index;
 };

@@ -6,7 +6,7 @@
 /*   By: mmisumi <mmisumi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 18:18:50 by winnitytrin       #+#    #+#             */
-/*   Updated: 2025/10/08 16:21:41 by mmisumi          ###   ########.fr       */
+/*   Updated: 2025/10/08 16:53:31 by mmisumi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,11 @@ int PhoneBook::isUserInput(std::string s)
 			return -1;
 	}
 
-	while(!m_contacts[user_count].isEmpty())
+	for (int i = 0; i < 8; i++){
+		if (m_contacts[user_count].isEmpty())
+			break ;
 		user_count++;
-	printf("user_count: %d\n", user_count);
+	}
 	n = std::stoi(s);
 	if (n < 0 || n >= user_count)
 		return -1;
@@ -56,10 +58,8 @@ void PhoneBook::selectContact()
 	std::string input;
 	int			n;
 
-	int user_count = 0;
-	while (!m_contacts[user_count].isEmpty())
-		user_count++;
-	
+	if (m_contacts[0].isEmpty())
+		return ;
 	do{
 		std::cout << "Enter a user index: ";
 		if (!getline(std::cin, input))
@@ -69,4 +69,3 @@ void PhoneBook::selectContact()
 	
 	m_contacts[n].printContactInfo();
 }
-
