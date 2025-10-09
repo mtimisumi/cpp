@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmisumi <mmisumi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: winnitytrinnity <winnitytrinnity@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 19:52:57 by mmisumi           #+#    #+#             */
-/*   Updated: 2025/10/08 16:41:15 by mmisumi          ###   ########.fr       */
+/*   Updated: 2025/10/09 22:29:52 by winnitytrin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ std::string	getPrompt(std::string_view s)
 	return (x);
 }
 
-void	addContact(PhoneBook &phoneBook)
+void	addContact(PhoneBook& phoneBook)
 {
 	Contact contact;
 
@@ -38,7 +38,7 @@ void	addContact(PhoneBook &phoneBook)
 	phoneBook.setContact(contact);
 }
 
-void	searchContact(PhoneBook &phoneBook)
+void	searchContact(PhoneBook& phoneBook)
 {
 	phoneBook.printContacts();
 	phoneBook.selectContact();
@@ -51,7 +51,7 @@ int	main(int argc, char *argv[])
 	
 	if (argc != 1)
 	return 0;
-	
+
 	do{
 		std::cout << "Enter a command (ADD, SEARCH, EXIT): ";
 		if (!std::getline(std::cin, x))

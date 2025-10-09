@@ -6,7 +6,7 @@
 /*   By: winnitytrinnity <winnitytrinnity@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 18:18:56 by winnitytrin       #+#    #+#             */
-/*   Updated: 2025/10/07 22:55:48 by winnitytrin      ###   ########.fr       */
+/*   Updated: 2025/10/09 22:12:27 by winnitytrin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,20 @@
 class Contact
 {
 	public:
-	void setFirstName(std::string firstName);
-	void setLastName(std::string lastName);
-	void setNickname(std::string nickname);
-	void setPhoneNumber(std::string phoneNumber);
-	void setDarkestSecret(std::string darkestSecret);
+		void setFirstName(const std::string& firstName);
+		void setLastName(const std::string& lastName);
+		void setNickname(const std::string& nickname);
+		void setPhoneNumber(const std::string& phoneNumber);
+		void setDarkestSecret(const std::string& darkestSecret);
+	
+		bool isEmpty();
+		void printContact(const int index);
+		void printContactInfo();
 
-	bool isEmpty();
-	void printContact(int index);
-	void printContactInfo();
 
+	private:
+		std::string getModString(const std::string& x);
+		void 		printElement(const std::string& element);
 
 	private:
 		std::string	m_firstName;
@@ -36,6 +40,4 @@ class Contact
 		std::string	m_phoneNumber;
 		std::string	m_darkestSecret;
 		
-		std::string getModString(std::string x);
-		void 		printElement(std::string element);
 };

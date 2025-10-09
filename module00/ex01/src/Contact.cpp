@@ -3,36 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmisumi <mmisumi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: winnitytrinnity <winnitytrinnity@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 18:18:45 by winnitytrin       #+#    #+#             */
-/*   Updated: 2025/10/08 15:35:06 by mmisumi          ###   ########.fr       */
+/*   Updated: 2025/10/09 22:21:04 by winnitytrin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
-void Contact::setFirstName(std::string firstName)
+void Contact::setFirstName(const std::string& firstName)
 {
 	m_firstName = firstName;
 }
 
-void Contact::setLastName(std::string lastName)
+void Contact::setLastName(const std::string& lastName)
 {
 	m_lastName = lastName;
 }
 
-void Contact::setNickname(std::string nickname)
+void Contact::setNickname(const std::string&  nickname)
 {
 	m_nickname = nickname;
 }
 
-void Contact::setPhoneNumber(std::string phoneNumber)
+void Contact::setPhoneNumber(const std::string& phoneNumber)
 {
 	m_phoneNumber = phoneNumber;
 }
 
-void Contact::setDarkestSecret(std::string darkestSecret)
+void Contact::setDarkestSecret(const std::string& darkestSecret)
 {
 	m_darkestSecret = darkestSecret;
 }
@@ -44,7 +44,7 @@ bool Contact::isEmpty()
 	return false;
 }
 
-std::string Contact::getModString(std::string s)
+std::string Contact::getModString(const std::string& s)
 {
 	std::string x;
 
@@ -54,12 +54,12 @@ std::string Contact::getModString(std::string s)
 	return x;
 }
 
-void Contact::printElement(std::string element)
+void Contact::printElement(const std::string& element)
 {
 	std::cout << '|' << std::setw(10) << std::right << element;
 }
 
-void Contact::printContact(int index)
+void Contact::printContact(const int index)
 {
 	std::string x = getModString(m_firstName);
 	std::string y = getModString(m_lastName);

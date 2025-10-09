@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmisumi <mmisumi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: winnitytrinnity <winnitytrinnity@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 19:48:31 by mmisumi           #+#    #+#             */
-/*   Updated: 2025/10/08 16:56:46 by mmisumi          ###   ########.fr       */
+/*   Updated: 2025/10/09 22:23:37 by winnitytrin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,13 @@
 class PhoneBook
 {
 	public:
-		PhoneBook() : m_index(0){}
-
-		void setContact(Contact contact);
+		void setContact(const Contact& contact);
 		void printContacts();
 		void selectContact();
 		
 	private:
 		Contact	m_contacts[8];
-		int 	m_index;
+		int 	m_index = 0;
 
-		int isUserInput(std::string input);
+		int isUserInput(const std::string& input);
 };

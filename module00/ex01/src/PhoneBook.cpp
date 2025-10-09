@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmisumi <mmisumi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: winnitytrinnity <winnitytrinnity@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 18:18:50 by winnitytrin       #+#    #+#             */
-/*   Updated: 2025/10/08 16:53:31 by mmisumi          ###   ########.fr       */
+/*   Updated: 2025/10/09 22:30:09 by winnitytrin      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-void PhoneBook::setContact(Contact contact)
+void PhoneBook::setContact(const Contact& contact)
 {
 	m_contacts[m_index] = contact;
 	m_index = (m_index + 1) % 8;
@@ -28,7 +28,7 @@ void PhoneBook::printContacts()
 	}
 }
 
-int PhoneBook::isUserInput(std::string s)
+int PhoneBook::isUserInput(const std::string& s)
 {
 	int user_count = 0;
 	int n;
