@@ -6,10 +6,11 @@
 class PhoneBook
 {
 	public:
-		setContact;
+		void	setContact(Contact& contact);
 
 	private:
-		Contact contacts[8];
+		Contact	m_contacts[8];
+		int		m_index = 0;
 };
 
 #endif
