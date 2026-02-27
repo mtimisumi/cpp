@@ -12,11 +12,11 @@ class	Contact
 		void	setPhoneNumber(const std::string& phoneNumber);
 		void	setDarkestSecret(const std::string& darkestSecret);
 
-		const std::string&	getFirstName() const ;
-		std::string&	getLastName();
-		std::string&	getNickName();
-		std::string&	getPhoneNumber();
-		std::string&	getDarkestSecret();
+		const std::string&	getFirstName() const;
+		const std::string&	getLastName() const;
+		const std::string&	getNickName() const;
+		const std::string&	getPhoneNumber() const;
+		const std::string&	getDarkestSecret() const;
 
 
 	private:
@@ -28,16 +28,3 @@ class	Contact
 };
 
 #endif
-
-
-// const int* a;
-// int const * a;
-
-
-/*
-	std::string&	getFirstName();
-
-	const std::string&	getFirstName() const ;
-
-
-*/

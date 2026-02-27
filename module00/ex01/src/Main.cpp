@@ -1,24 +1,8 @@
-#include <iostream>
-#include "PhoneBook.hpp"
-
-const std::string&	getPrompt(const std::string& s)
-{
-	std::string	input;
-
-	do
-	{
-		std::cout << "Enter " << s << ":";
-		if (!std::getline(std::cin, input))
-			std::exit(1);
-	}
-	while (input.empty());
-
-	return (input);
-}
+#include "Header.hpp"
 
 void	addContact(PhoneBook& phoneBook)
 {
-	Contact	contact;
+	Contact		contact;
 
 	contact.setFirstName(getPrompt("first name"));
 	contact.setLastName(getPrompt("last name"));
@@ -29,22 +13,18 @@ void	addContact(PhoneBook& phoneBook)
 	phoneBook.setContact(contact);
 }
 
-void	displayContactSummary()
-{
-
-}
-
-void	displayContactInfo(const Contact& contact)
-{
-	std::cout << contact.getFirstName() << std::endl;
-}
-
 void	searchContact(const PhoneBook& phoneBook)
 {
-	for (int i = 0; i < 8; i++)
+	int	index;
+
+	index = phoneBook.getIndex();
+	if (index == 0)
 	{
-		displayContactSummary();
+		std::cout << "No contacts to display" << std::endl;
+		return ;
 	}
+	displayContacts(phoneBook, index);
+	selectContact(phoneBook, index);
 }
 
 int	main()
@@ -56,7 +36,7 @@ int	main()
 	{
 		std::cout << "Enter a command (ADD, SEARCH, EXIT): ";
 		if (!std::getline(std::cin, input))
-			return (1);
+			std::exit(1);
 		if (input == "ADD")
 			addContact(phoneBook);
 		else if (input == "SEARCH")

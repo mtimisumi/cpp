@@ -6,12 +6,12 @@ void	PhoneBook::setContact(Contact& contact)
 	m_index += 1;
 }
 
-void	PhoneBook::displayContactSummary()
+const Contact&	PhoneBook::getContact(int index) const
 {
-
+	return (m_contacts[index]);
 }
 
-void	PhoneBook::displayContactInfo()
+int	PhoneBook::getIndex() const
 {
-
+	return (m_index);
 }
