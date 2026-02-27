@@ -3,7 +3,7 @@ NAME = megaphone
 CC = c++
 
 # it is not mandatory for codam students to follow the c++98 rules
-FLAGS = -std=c++17 -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
 SRCS	:= src/megaphone.cpp
 OBJS	:= $(patsubst src/%.cpp, .obj/%.o, $(SRCS))
