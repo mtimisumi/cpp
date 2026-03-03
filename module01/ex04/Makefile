@@ -1,16 +1,16 @@
-NAME = megaphone
+NAME = 
 
 CC = c++
 
 # it is not mandatory for codam students to follow the c++98 rules
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -Iincludes
 
-SRCS	:= megaphone.cpp
-OBJS	:= $(patsubst %.cpp, .obj/%.o, $(SRCS))
+SRCS	:= 
+OBJS	:= $(patsubst %.src/cpp, .obj/%.o, $(SRCS))
 
 all: $(NAME)
 
-.obj/%.o: %.cpp
+.obj/%.o: src/%.cpp
 	mkdir -p $(@D)
 	$(CC) $(FLAGS) -o $@ -c $<
 

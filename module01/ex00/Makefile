@@ -1,11 +1,11 @@
-NAME = phonebook
+NAME = zombie
 
 CC = c++
 
 # it is not mandatory for codam students to follow the c++98 rules
 FLAGS = -Wall -Wextra -Werror -Iincludes
 
-SRCS	:= 
+SRCS	:= src/main.cpp src/Zombie.cpp src/newZombie.cpp src/randomChump.cpp
 OBJS	:= $(patsubst src/%.cpp, .obj/%.o, $(SRCS))
 
 all: $(NAME)

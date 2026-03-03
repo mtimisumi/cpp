@@ -2,6 +2,8 @@
 # define PHONEBOOK_HPP
 
 # include "Contact.hpp"
+# include <iostream>
+# include <iomanip>
 
 class PhoneBook
 {
@@ -15,5 +17,9 @@ class PhoneBook
 		Contact	m_contacts[8];
 		int		m_index = 0;
 };
+
+std::string	getPrompt(const std::string& s);
+void		displayContacts(const PhoneBook& phoneBook, int index);
+void		selectContact(const PhoneBook& phoneBook, int index);
 
 #endif
