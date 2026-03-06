@@ -1,47 +1,66 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
 
-typedef enum error
+#define ARGC "Error: invalid amount of arguments"
+#define IFILE "Error: couldnt open file"
+#define OFILE "Error: couldnt create file"
+#define RDBUF "Error: rdbuf fail/bad"
+
+
+void	exitError(const std::string& errorMessage)
 {
-	ERROR_OPEN,
-
-}			error;
-
-void	exitError()
-{
-
+	std::cerr << errorMessage << std::endl;
+	std::exit(1);
 }
 
-void	replacer(const std::string& file, const std::string& s1, const std::string& s2)
+std::string	copyFileString(const std::ifstream& file)
 {
-	std::string	replace;
-	std::string	content;
-	size_t		s1Len = s1.length();
-	size_t		start = 0;
+	std::ostringstream	ss;
 
-	std::ifstream(file) >> content;
-	if (!content)
-		exitError();
-	while (start < content.length())
-	{
-		size_t pos = content.find(s1, start);
-		content.erase(pos, s1Len);
-		content.insert(pos, s2);
-		start= pos + s1Len;
+	ss << file.rdbuf();
+	if (file.fail() || file.bad())
+		exitError(RDBUF);
+	return (ss.str());
+}
+
+std::string	replaceAll(std::string str, const std::string& s1, const std::string& s2)
+{
+	size_t	s1Len = s1.length();
+	size_t	s2Len = s2.length();
+	size_t	start = 0;
+
+	if (s1.empty())
+		return (str);
+	while (start < str.length()) {
+		size_t pos = str.find(s1, start);
+		if (pos == std::string::npos)
+			break ;
+		str.erase(pos, s1Len);
+		str.insert(pos, s2);
+		start = pos + s2Len;
 	}
-	std::ofstream replace(file + ".replace");
-	replace << content;
-}
-
-void	replacer(const std::string& file, const std::string& s1, const std::string& s2)
-{
-	std::ifstream
+	return (str);
 }
 
 int	main(int argc, char *argv[])
 {
 	if (argc != 4)
-		return 1;
-	replacer(argv[1], argv[2], argv[3]);
+		exitError(ARGC);
+
+	std::ifstream inFile(argv[1]);
+	if (!inFile)
+		exitError(IFILE);
+
+	std::string content = copyFileString(inFile);
+
+	std::cout << content << std::endl;
+	content = replaceAll(content, argv[2], argv[3]);
+	std::cout << content << std::endl;
+
+	std::ofstream outFile(std::string(argv[1]) + ".replace");
+	if (!outFile)
+		exitError(OFILE);
+	outFile << content;
 }

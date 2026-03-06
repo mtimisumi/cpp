@@ -1,4 +1,4 @@
-NAME = replacer
+NAME = 
 
 CC = c++
 
@@ -6,11 +6,11 @@ CC = c++
 FLAGS = -Wall -Wextra -Werror -Iincludes -g
 
 SRCS	:= main.cpp
-OBJS	:= $(patsubst %.cpp, .obj/%.o, $(SRCS))
+OBJS	:= $(patsubst src/%.cpp, .obj/%.o, $(SRCS))
 
 all: $(NAME)
 
-.obj/%.o: %.cpp
+.obj/%.o: src/%.cpp
 	mkdir -p $(@D)
 	$(CC) $(FLAGS) -o $@ -c $<
 
