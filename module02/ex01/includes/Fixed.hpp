@@ -1,6 +1,9 @@
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
+# include <iostream>
+# include <cmath>
+
 # define FRACTBITS 8
 
 class	Fixed
@@ -15,6 +18,8 @@ class	Fixed
 
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
+		int		toInt(void) const;
+		float	toFloat(void) const;
 
 	private:
 		int					_rawBits;
