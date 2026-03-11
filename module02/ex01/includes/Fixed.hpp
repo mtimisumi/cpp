@@ -1,13 +1,15 @@
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
-# include <iostream>
+# define FRACTBITS 8
 
 class	Fixed
 {
 	public:
 		Fixed();
 		~Fixed();
+		Fixed(int const value);
+		Fixed(float const value);
 		Fixed(const Fixed& other);
 		Fixed&	operator=(const Fixed& other);
 
@@ -16,7 +18,7 @@ class	Fixed
 
 	private:
 		int					_rawBits;
-		static const int	_fracBits;
+		static const int	_fractBits = FRACTBITS;
 };
 
 #endif
