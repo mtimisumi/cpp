@@ -4,8 +4,7 @@ std::string	getPrompt(const std::string& s)
 {
 	std::string	input;
 
-	do
-	{
+	do{
 		std::cout << "Enter " << s << ": ";
 		if (!std::getline(std::cin, input))
 			std::exit(1);
@@ -15,19 +14,19 @@ std::string	getPrompt(const std::string& s)
 	return (input);
 }
 
-static std::string	getModString(const std::string& s)
+std::string	getModString(std::string s)
 {
 	if (s.length() > 10)
-		s.substr(0, 8) + '.';
+		s = s.substr(0, 8) + '.';
 	return (s);
 }
 
-static void	printField(const std::string& field)
+void	printField(const std::string& field)
 {
 	std::cout << '|' << std::setw(10) << std::right << field;
 }
 
-static void	displayContactSummary(const Contact& contact, int index)
+void	displayContactSummary(const Contact& contact, int index)
 {
 	std::cout << std::setw(10) << std::right << index;
 	printField(getModString(contact.getFirstName()));
@@ -55,6 +54,20 @@ static void	displayContactInfo(const Contact& contact)
 	std::cout << "Darkest Secret: " << contact.getDarkestSecret() << std::endl;
 }
 
+static int	validInput(const std::string& input)
+{
+	if (input.empty())
+		return 0;
+	if (input.length() > 1)
+		return 0;
+	for (char c: input)
+	{
+		if (!std::isdigit(c))
+			return 0;
+	}
+	return 1;
+}
+
 void	selectContact(const PhoneBook& phoneBook, int index)
 {
 	std::string	input;
@@ -65,6 +78,8 @@ void	selectContact(const PhoneBook& phoneBook, int index)
 		std::cout << "Enter an index of the contact to display: ";
 		if (!getline(std::cin, input))
 			std::exit(1);
+		if (!validInput(input))
+			continue ;
 		i = std::stoi(input);
 		if (i <= index && i > 0)
 			break ;

@@ -27,11 +27,14 @@ void	searchContact(const PhoneBook& phoneBook)
 	selectContact(phoneBook, index);
 }
 
-int	main()
+int	main(int argc, char *argv[])
 {
+	(void)argv;
 	PhoneBook	phoneBook;
 	std::string	input;
 
+	if (argc != 1)
+		return 0;
 	while (1)
 	{
 		std::cout << "Enter a command (ADD, SEARCH, EXIT): ";
