@@ -3,7 +3,6 @@
 int	main()
 {
 	Zombie	*zombies;
-
 	zombies = zombieHorde(10, "Burt");
 	for (int i = 0; i < 10; i++)
 	{

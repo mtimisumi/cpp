@@ -5,17 +5,20 @@
 int	main()
 {
 	Weapon club = Weapon("crude spiked club");
+	Weapon knife = Weapon("knife");
 
 	HumanA bob("Bob", club);
 	bob.attack();
 	club.setType("some type of other club");
 	bob.attack();
-
-	club.setType("crude spiked club");
+	std::cout << std::endl;
 
 	HumanB jim("Jim");
+	jim.attack();
 	jim.setWeapon(club);
 	jim.attack();
-	club.setType("some other type of club");
+	club.setType("crude spiked club");
+	jim.attack();
+	jim.setWeapon(knife);
 	jim.attack();
 }

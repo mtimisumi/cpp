@@ -3,7 +3,7 @@ NAME = replacer
 CC = c++
 
 # it is not mandatory for codam students to follow the c++98 rules
-FLAGS = -Wall -Wextra -Werror -Iincludes -g
+FLAGS = -Wall -Wextra -Werror -Iincludes
 
 SRCS	:= main.cpp
 OBJS	:= $(patsubst %.cpp, .obj/%.o, $(SRCS))

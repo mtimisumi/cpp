@@ -1,9 +1,9 @@
-NAME = harlFiler
+NAME = harlFilter
 
 CC = c++
 
 # it is not mandatory for codam students to follow the c++98 rules
-FLAGS = -Wall -Wextra -Werror -Iincludes -g
+FLAGS = -Wall -Wextra -Werror -Iincludes
 
 SRCS	:= src/main.cpp src/Harl.cpp
 OBJS	:= $(patsubst src/%.cpp, .obj/%.o, $(SRCS))
