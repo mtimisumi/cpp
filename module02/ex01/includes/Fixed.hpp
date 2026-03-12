@@ -26,4 +26,6 @@ class	Fixed
 		static const int	_fractBits = FRACTBITS;
 };
 
+std::ostream&	operator<<(std::ostream& os, const Fixed& fx);
+
 #endif
