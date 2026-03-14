@@ -5,7 +5,7 @@ void	Harl::complain(std::string level)
 	static void (Harl::*f[])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	static const std::string logLevels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < MAXLEVEL; i++)
 	{
 		if (level == logLevels[i]) {
 			(this->*f[i])();

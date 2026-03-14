@@ -32,7 +32,7 @@ void	Harl::error(void)
 void	Harl::complain(std::string level)
 {
 	static const std::string logLevels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	int	x = MAXLEVEL;
+	int	x = -1;
 
 	for (int i = 0; i < MAXLEVEL; i++)
 	{
@@ -43,13 +43,10 @@ void	Harl::complain(std::string level)
 	}
 	switch (x)
 	{
-		case  MAXLEVEL: {
-			std:: cout << "[ Probably complaining about insignificant problems ]\n";
-			break ;
-		}
 		case 0: debug();
 		case 1: info();
 		case 2: warning();
-		case 3: error();
+		case 3: error(); break ;
+		default: std:: cout << "[ Probably complaining about insignificant problems ]\n";
 	}
 }

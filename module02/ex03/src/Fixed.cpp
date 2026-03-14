@@ -2,35 +2,35 @@
 
 Fixed::Fixed() : _rawBits(0)
 {
-	std::cout << "Default constructor called\n";
+	std::cout << "Fixed default constructor called\n";
 }
 
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called\n";
+	std::cout << "Fixed destructor called\n";
 }
 
 Fixed::Fixed(int const value)
 {
-	std::cout << "Int constructor called\n";
+	std::cout << "Fixed int constructor called\n";
 	_rawBits = value << FRACTBITS;
 }
 
 Fixed::Fixed(float const value)
 {
-	std::cout << "Float constructor called\n";
+	std::cout << "Fixed float constructor called\n";
 	_rawBits = roundf(value * (1 << FRACTBITS));
 }
 
 Fixed::Fixed(const Fixed& other)
 {
-	std::cout << "Copy constructor called\n";
+	std::cout << "Fixed copy constructor called\n";
 	_rawBits = other._rawBits;
 }
 
 Fixed&	Fixed::operator=(const Fixed& other)
 {
-	std::cout << "copy assignment operator called\n";
+	std::cout << "Fixed copy assignment operator called\n";
 	if (this != &other)
 		_rawBits = other._rawBits;
 	return (*this);
@@ -38,13 +38,13 @@ Fixed&	Fixed::operator=(const Fixed& other)
 
 int	Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits member function called\n";
+	std::cout << "Fixed getRawBits member function called\n";
 	return (_rawBits);
 }
 
 void	Fixed::setRawBits(int const raw)
 {
-	std::cout << "setRawBits member function called\n";
+	std::cout << "Fixed setRawBits member function called\n";
 	_rawBits = raw;
 }
 

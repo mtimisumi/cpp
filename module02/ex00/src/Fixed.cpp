@@ -1,9 +1,8 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed()
+Fixed::Fixed() : _rawBits(0)
 {
 	std::cout << "Default constructor called\n";
-	_rawBits = 0;
 }
 
 Fixed::~Fixed()

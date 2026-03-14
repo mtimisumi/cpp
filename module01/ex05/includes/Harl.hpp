@@ -4,6 +4,8 @@
 # include <iostream>
 # include <string>
 
+# define MAXLEVEL 4
+
 class	Harl
 {
 	public:
