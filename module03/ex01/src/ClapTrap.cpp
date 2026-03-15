@@ -1,31 +1,39 @@
 #include "ClapTrap.hpp"
 
+ClapTrap::ClapTrap() :
+	_name("ClapTrap"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+{
+	std::cout << "ClapTrap default constructor called\n";
+}
+
 ClapTrap::ClapTrap(const std::string& name) :
 	_name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	std::cout << "Default constructor called\n";
+	std::cout << "ClapTrap " << _name << " constructor called\n";
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "Destructor called\n";
+	std::cout << "ClapTrap " << _name << " destructor called\n";
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other) :
 	_name(other._name), _hitPoints(other._hitPoints),
 	_energyPoints(other._energyPoints), _attackDamage(other._attackDamage)
 {
-	std::cout << "Copy constructor called\n";
+	std::cout << "ClapTrap " << _name << " copy constructor called\n";
 }
 
 ClapTrap&	ClapTrap::operator=(const ClapTrap& other)
 {
-	std::cout << "Copy asignment operator called\n";
+	std::cout << "ClapTrap " << _name << " copy asignment operator called\n";
 
-	_name = other._name;
-	_hitPoints = other._hitPoints;
-	_energyPoints = other._energyPoints;
-	_attackDamage = other._attackDamage;
+	if (this != &other) {
+		_name = other._name;
+		_hitPoints = other._hitPoints;
+		_energyPoints = other._energyPoints;
+		_attackDamage = other._attackDamage;
+	}
 	return (*this);
 }
 
@@ -41,7 +49,7 @@ void	ClapTrap::attack(const std::string& target)
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
-	std::cout << _name << " gets attacked, causing " << amount << " points of damage!\n";
+	std::cout << _name << " gets attacked, losing " << amount << " hit points!\n";
 	_hitPoints -= amount;
 }
 

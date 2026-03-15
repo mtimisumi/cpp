@@ -1,11 +1,11 @@
-NAME = scavtrap
+NAME = fragclap
 
 CC = c++
 
 # it is not mandatory for codam students to follow the c++98 rules
 FLAGS = -Wall -Wextra -Werror -Iincludes
 
-SRCS	:= src/main.cpp src/ClapTrap.cpp src/ScavTrap.cpp
+SRCS	:= src/main.cpp src/ClapTrap.cpp src/ScavTrap.cpp src/FragClap.cpp
 OBJS	:= $(patsubst src/%.cpp, .obj/%.o, $(SRCS))
 
 all: $(NAME)
