@@ -6,7 +6,7 @@ int	main()
 	ClapTrap	kim("Kim");
 
 	emi.attack("Kim");
-	kim.takeDamage(10);
+	kim.takeDamage(9);
 	kim.beRepaired(5);
 	kim.attack("Emi");
 	emi.takeDamage(16);
