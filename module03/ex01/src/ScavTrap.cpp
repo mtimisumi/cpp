@@ -44,7 +44,8 @@ void	ScavTrap::attack(const std::string& target)
 		std::cout << _name << " has no energypoints left to attack.\n";
 		return ;
 	}
-	std::cout << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!\n";
+	std::cout << "ScavTrap " << _name << " attacks " << target
+			  << ", causing " << _attackDamage << " points of damage!\n";
 	_energyPoints -= 1;
 }
 
