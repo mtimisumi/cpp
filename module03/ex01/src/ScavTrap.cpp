@@ -2,12 +2,12 @@
 
 ScavTrap::ScavTrap() :  ClapTrap()
 {
-	std::cout << "ScavTrap " << _name << " default constructor called\n";
+	std::cout << CYAN << "ScavTrap " << _name << " default constructor called\n" << RESET;
 }
 
 ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name)
 {
-	std::cout << "ScavTrap " << _name << " constructor called\n";
+	std::cout << CYAN << "ScavTrap " << _name << " constructor called\n" << RESET;
 	_hitPoints = 100;
 	_energyPoints = 50;
 	_attackDamage = 20;
@@ -15,17 +15,17 @@ ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name)
 
 ScavTrap::~ScavTrap()
 {
-	std::cout << "ScavTrap " << _name << " destructor called\n";
+	std::cout << MAGENTA << "ScavTrap " << _name << " destructor called\n" << RESET;
 }
 
 ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other)
 {
-	std::cout << "ScavTrap " << _name << " copy constructor called\n";
+	std::cout << CYAN << "ScavTrap " << _name << " copy constructor called\n" << RESET;
 }
 
 ScavTrap&	ScavTrap::operator=(const ScavTrap& other)
 {
-	std::cout << "ScavTrap " << _name << " copy assignment operator called\n";
+	std::cout << BLUE << "ScavTrap " << _name << " copy assignment operator called\n" << RESET;
 	if (this != &other) {
 		ClapTrap::operator=(other);
 	}
@@ -34,28 +34,18 @@ ScavTrap&	ScavTrap::operator=(const ScavTrap& other)
 
 void	ScavTrap::attack(const std::string &target)
 {
-	if (_hitPoints < 1) {
-		std::cout << _name << " is dead and cannot attack.\n";
+	if (!hasHitPoints("attack") || !hasEnergyPoints("attack")) {
 		return ;
 	}
-	if (_energyPoints < 1) {
-		std::cout << _name << " has no energypoints left to attack.\n";
-		return ;
-	}
-	std::cout << "ScavTrap " << _name << " attacks " << target
-			  << ", causing " << _attackDamage << " points of damage!\n";
+	std::cout << YELLOW << "ScavTrap " << _name << " attacks " << target
+			  << ", causing " << _attackDamage << " points of damage!\n" << RESET;
 	_energyPoints -= 1;
 }
 
 void	ScavTrap::guardGate()
 {
-	if (_hitPoints < 1) {
-		std::cout << _name << " is dead and cannot guard the gate.\n";
+	if (!hasHitPoints("guard gate.")) {
 		return ;
 	}
-	if (_energyPoints < 1) {
-		std::cout << _name << " has no energypoints left to guard the gate.\n";
-		return ;
-	}
-	std::cout << _name << " is now in Gate keeping mode.\n";
+	std::cout << YELLOW << _name << " is now in Gate keeping mode.\n" << RESET;
 }

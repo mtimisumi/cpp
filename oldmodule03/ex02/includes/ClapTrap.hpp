@@ -4,15 +4,6 @@
 # include <iostream>
 # include <string>
 
-# define RED "\033[1;31m"
-# define MAGENTA "\033[1;35m"
-# define GREEN "\033[1;32m"
-# define YELLOW "\033[33m"
-# define BLUE "\033[1;34m"
-# define CYAN "\033[1;36m"
-# define RESET "\033[0m"
-# define BLACK "\033[1;30m"
-
 class	ClapTrap
 {
 	public:
@@ -26,9 +17,6 @@ class	ClapTrap
 		void	attack(const std::string& target);
 		void	takeDamage(unsigned int amount);
 		void	beRepaired(unsigned int amount);
-
-		bool	hasHitPoints(const std::string& action);
-		bool	hasEnergyPoints(const std::string& action);
 
 	protected:
 		std::string	_name;

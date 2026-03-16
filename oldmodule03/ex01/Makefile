@@ -1,11 +1,11 @@
-NAME = fixed
+NAME = scavtrap
 
 CC = c++
 
 # it is not mandatory for codam students to follow the c++98 rules
 FLAGS = -Wall -Wextra -Werror -Iincludes
 
-SRCS	:= src/main.cpp src/Fixed.cpp
+SRCS	:= src/main.cpp src/ClapTrap.cpp src/ScavTrap.cpp
 OBJS	:= $(patsubst src/%.cpp, .obj/%.o, $(SRCS))
 
 all: $(NAME)
