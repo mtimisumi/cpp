@@ -10,20 +10,6 @@ Fixed::~Fixed()
 	std::cout << "Destructor called\n";
 }
 
-Fixed::Fixed(int const value)
-{
-	std::cout << "Int constructor called\n";
-
-	_rawBits = value << FRACTBITS;
-}
-
-Fixed::Fixed(float const value)
-{
-	std::cout << "Float constructor called\n";
-
-	_rawBits = roundf(value * (1 << FRACTBITS));
-}
-
 Fixed::Fixed(const Fixed& other)
 {
 	std::cout << "Copy constructor called\n";
@@ -38,6 +24,20 @@ Fixed&	Fixed::operator=(const Fixed& other)
 	if (this != &other)
 		_rawBits = other._rawBits;
 	return (*this);
+}
+
+Fixed::Fixed(const int value)
+{
+	std::cout << "Int constructor called\n";
+
+	_rawBits = value << FRACTBITS;
+}
+
+Fixed::Fixed(const float value)
+{
+	std::cout << "Float constructor called\n";
+
+	_rawBits = roundf(value * (float)(1 << FRACTBITS));
 }
 
 int	Fixed::getRawBits(void) const

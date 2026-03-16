@@ -3,6 +3,8 @@
 
 # include <iostream>
 
+# define FRACTBITS 8
+
 class	Fixed
 {
 	public:
@@ -16,7 +18,7 @@ class	Fixed
 
 	private:
 		int					_rawBits;
-		static const int	_fracBits;
+		static const int	_fracBits = FRACTBITS;
 };
 
 #endif
