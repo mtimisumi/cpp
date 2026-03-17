@@ -2,7 +2,12 @@
 
 ScavTrap::ScavTrap() :  ClapTrap()
 {
-	std::cout << "ScavTrap " << _name << " default constructor called\n";
+	std::cout << "ScavTrap default constructor called\n";
+}
+
+ScavTrap::~ScavTrap()
+{
+	std::cout << "ScavTrap " << _name << " destructor called\n";
 }
 
 ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name)
@@ -11,11 +16,6 @@ ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name)
 	_hitPoints = 100;
 	_energyPoints = 50;
 	_attackDamage = 20;
-}
-
-ScavTrap::~ScavTrap()
-{
-	std::cout << "ScavTrap " << _name << " destructor called\n";
 }
 
 ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other)
@@ -34,12 +34,7 @@ ScavTrap&	ScavTrap::operator=(const ScavTrap& other)
 
 void	ScavTrap::attack(const std::string &target)
 {
-	if (_hitPoints < 1) {
-		std::cout << _name << " is dead and cannot attack.\n";
-		return ;
-	}
-	if (_energyPoints < 1) {
-		std::cout << _name << " has no energypoints left to attack.\n";
+	if (!hasHitPoints("attack") || !hasEnergyPoints("attack")) {
 		return ;
 	}
 	std::cout << "ScavTrap " << _name << " attacks " << target
@@ -49,13 +44,9 @@ void	ScavTrap::attack(const std::string &target)
 
 void	ScavTrap::guardGate()
 {
-	if (_hitPoints < 1) {
-		std::cout << _name << " is dead and cannot guard the gate.\n";
-		return ;
-	}
-	if (_energyPoints < 1) {
-		std::cout << _name << " has no energypoints left to guard the gate.\n";
+	if (!hasHitPoints("guard gate.") || !hasEnergyPoints("guard gate.")) {
 		return ;
 	}
 	std::cout << _name << " is now in Gate keeping mode.\n";
+	_energyPoints -= 1;
 }

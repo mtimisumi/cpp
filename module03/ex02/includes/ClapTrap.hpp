@@ -14,9 +14,12 @@ class	ClapTrap
 		ClapTrap&	operator=(const ClapTrap& other);
 
 	public:
-		virtual void	attack(const std::string& target);
-		void			takeDamage(unsigned int amount);
-		void			beRepaired(unsigned int amount);
+		void	attack(const std::string& target);
+		void	takeDamage(unsigned int amount);
+		void	beRepaired(unsigned int amount);
+
+		bool	hasHitPoints(const std::string& action);
+		bool	hasEnergyPoints(const std::string& action);
 
 	protected:
 		std::string	_name;

@@ -12,4 +12,8 @@ int	main()
 	emi.takeDamage(16);
 	emi.beRepaired(6);
 	emi.attack("Kim");
+	for (int i = 0; i < 10; i++) {
+		kim.beRepaired(10);
+	}
+	kim.attack("someone");
 }

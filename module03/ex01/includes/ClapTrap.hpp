@@ -4,18 +4,6 @@
 # include <iostream>
 # include <string>
 
-# define RED "\033[1;31m"
-# define MAGENTA "\033[35m"
-# define GREEN "\033[32m"
-# define CYAN GREEN
-// # define YELLOW "\033[33m"
-# define WHITE "\033[37m"
-# define YELLOW WHITE
-# define BLUE "\033[34m"
-// # define CYAN "\033[36m"
-# define RESET "\033[0m"
-# define BLACK "\033[30m"
-
 class	ClapTrap
 {
 	public:

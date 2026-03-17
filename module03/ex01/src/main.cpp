@@ -11,4 +11,10 @@ int	main()
 	david.attack("Ichiro");
 	ichiro.takeDamage(20);
 	ichiro.guardGate();
+	for (int i = 0; i < 6; i++) {
+		david.takeDamage(20);
+	}
+	david.guardGate();
+	david.beRepaired(10);
+
 }

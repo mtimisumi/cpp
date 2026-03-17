@@ -1,7 +1,7 @@
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap() :
-	_name("ClapTrap"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+	_name("default"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
 	std::cout << "ClapTrap default constructor called\n";
 }
@@ -25,24 +25,19 @@ ClapTrap::ClapTrap(const ClapTrap& other)
 
 ClapTrap&	ClapTrap::operator=(const ClapTrap& other)
 {
-	std::cout << "ClapTrap " << _name << " copy asignment operator called\n";
+	std::cout<< "ClapTrap " << _name << " copy asignment operator called\n";
 	if (this != &other) {
 		_name = other._name;
 		_hitPoints = other._hitPoints;
 		_energyPoints = other._energyPoints;
 		_attackDamage = other._attackDamage;
 	}
-	return (*this);
+	return *this;
 }
 
 void	ClapTrap::attack(const std::string& target)
 {
-	if (_hitPoints < 1) {
-		std::cout << _name << " is dead and cannot attack.\n";
-		return ;
-	}
-	if (_energyPoints < 1) {
-		std::cout << _name << " has no energypoints left to attack.\n";
+	if (!hasHitPoints("attack.") || !hasEnergyPoints("attack.")) {
 		return ;
 	}
 	std::cout << "ClapTrap " << _name << " attacks " << target
@@ -52,26 +47,42 @@ void	ClapTrap::attack(const std::string& target)
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
-	if (_hitPoints < 1) {
-		std::cout << _name << " is already dead.\n";
+	if (!hasHitPoints("take damage.")) {
 		return ;
 	}
-	std::cout << _name << " gets attacked, losing " << amount << " hit points!\n";
+	std::cout << _name << " gets attacked, losing " << amount
+			  << " hit points!\n";
 	_hitPoints -= amount;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
 {
-	if (_hitPoints < 1) {
-		std::cout << _name << " is dead and cannot repair.\n";
+	if (!hasHitPoints("repair.") || !hasEnergyPoints("repair.")) {
 		return ;
 	}
-	if (_energyPoints < 1) {
-		std::cout << _name << " has no energypoints left to repair.\n";
-		return ;
-	}
-	std::cout << _name << " repairs itself, regaining " << amount << " hit points!\n";
+	std::cout << _name << " repairs itself, regaining "
+			  << amount << " hit points!\n";
 	_hitPoints += amount;
 	_energyPoints -= 1;
+}
+
+bool	ClapTrap::hasHitPoints(const std::string& action)
+{
+	if (_hitPoints < 1) {
+		std::cout << _name << " is already dead and cannot do action: "
+				  << action << std::endl;
+		return false;
+	}
+	return true;
+}
+
+bool	ClapTrap::hasEnergyPoints(const std::string& action)
+{
+	if (_energyPoints < 1) {
+		std::cout << _name << " has no energypoints left for action: "
+				  << action << std::endl;
+		return false;
+	}
+	return true;
 }
 
