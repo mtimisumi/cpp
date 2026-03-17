@@ -10,7 +10,7 @@ ScavTrap::ScavTrap() :  ClapTrap()
 
 ScavTrap::~ScavTrap()
 {
-	std::cout << BLACK << "ScavTrap " << _name << " destructor called\n" <, RESET;
+	std::cout << BLACK << "ScavTrap " << _name << " destructor called\n" << RESET;
 }
 
 ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name)
@@ -28,10 +28,10 @@ ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other)
 
 ScavTrap&	ScavTrap::operator=(const ScavTrap& other)
 {
-	std::cout << BLACK << "ScavTrap " << _name << " copy assignment operator called\n" << RESET;
 	if (this != &other) {
 		ClapTrap::operator=(other);
 	}
+	std::cout << BLACK << "ScavTrap " << _name << " copy assignment operator called\n" << RESET;
 	return (*this);
 }
 

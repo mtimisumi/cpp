@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include <string>
+# include <iomanip>
 
 # define RESET "\033[0m"
 # define BLACK "\033[30m"
@@ -23,6 +24,7 @@ class	ClapTrap
 
 		bool	hasHitPoints(const std::string& action);
 		bool	hasEnergyPoints(const std::string& action);
+		void	showStats() const;
 
 	protected:
 		std::string	_name;

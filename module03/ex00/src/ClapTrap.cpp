@@ -1,7 +1,7 @@
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap() :
-	_name("default_clap_trap"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+	_name("default"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
 	std::cout << BLACK << "ClapTrap default constructor called\n" << RESET;
 }
@@ -25,13 +25,13 @@ ClapTrap::ClapTrap(const ClapTrap& other)
 
 ClapTrap&	ClapTrap::operator=(const ClapTrap& other)
 {
-	std::cout<< BLACK << "ClapTrap " << _name << " copy asignment operator called\n" << RESET;
 	if (this != &other) {
 		_name = other._name;
 		_hitPoints = other._hitPoints;
 		_energyPoints = other._energyPoints;
 		_attackDamage = other._attackDamage;
 	}
+	std::cout<< BLACK << "ClapTrap " << _name << " copy asignment operator called\n" << RESET;
 	return *this;
 }
 
@@ -84,5 +84,23 @@ bool	ClapTrap::hasEnergyPoints(const std::string& action)
 		return false;
 	}
 	return true;
+}
+
+void	ClapTrap::showStats() const
+{
+	if (_name.length() > 10)
+		std::string temp = _name.substr(0,8) + '.';
+	else
+		std::string temp = _name;
+
+	std::cout << std::setw(10) << "Name:"
+			  << std::setw(10) << "HP:"
+			  << std::setw(10) << "EP:"
+			  << std::setw(10) << "AD:" << std::endl
+			  << std::setw(10) << _name
+			  << std::setw(10) << _hitPoints
+			  << std::setw(10) << _energyPoints
+			  << std::setw(10) << _attackDamage
+			  << std::endl << std::endl;
 }
 
