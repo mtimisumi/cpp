@@ -10,7 +10,7 @@ FragTrap::FragTrap() :  ClapTrap()
 
 FragTrap::~FragTrap()
 {
-	std::cout << BLACK << "FragTrap " << _name << " destructor called\n" <, RESET;
+	std::cout << BLACK << "FragTrap " << _name << " destructor called\n" << RESET;
 }
 
 FragTrap::FragTrap(const std::string& name) : ClapTrap(name)

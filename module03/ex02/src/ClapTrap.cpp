@@ -1,31 +1,31 @@
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap() :
-	_name("default"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+	_name("default_clap_trap"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	std::cout << "ClapTrap default constructor called\n";
+	std::cout << BLACK << "ClapTrap default constructor called\n" << RESET;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "ClapTrap " << _name << " destructor called\n";
+	std::cout << BLACK << "ClapTrap " << _name << " destructor called\n" << RESET;
 }
 
 ClapTrap::ClapTrap(const std::string& name) :
 	_name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	std::cout << "ClapTrap " << _name << " constructor called\n";
+	std::cout << BLACK << "ClapTrap " << _name << " constructor called\n" << RESET;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other)
 {
 	*this = other;
-	std::cout << "ClapTrap " << _name << " copy constructor called\n";
+	std::cout << BLACK << "ClapTrap " << _name << " copy constructor called\n" << RESET;
 }
 
 ClapTrap&	ClapTrap::operator=(const ClapTrap& other)
 {
-	std::cout<< "ClapTrap " << _name << " copy asignment operator called\n";
+	std::cout<< BLACK << "ClapTrap " << _name << " copy asignment operator called\n" << RESET;
 	if (this != &other) {
 		_name = other._name;
 		_hitPoints = other._hitPoints;

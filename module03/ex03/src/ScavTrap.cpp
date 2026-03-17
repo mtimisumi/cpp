@@ -10,7 +10,7 @@ ScavTrap::ScavTrap() :  ClapTrap()
 
 ScavTrap::~ScavTrap()
 {
-	std::cout << BLACK << "ScavTrap " << _name << " destructor called\n" <, RESET;
+	std::cout << BLACK << "ScavTrap " << _name << " destructor called\n" << RESET;
 }
 
 ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name)

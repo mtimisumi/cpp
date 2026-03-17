@@ -2,17 +2,20 @@
 
 ScavTrap::ScavTrap() :  ClapTrap()
 {
-	std::cout << "ScavTrap default constructor called\n";
+	std::cout << BLACK << "ScavTrap default constructor called\n" << RESET;
+	_hitPoints = 100;
+	_energyPoints = 50;
+	_attackDamage = 20;
 }
 
 ScavTrap::~ScavTrap()
 {
-	std::cout << "ScavTrap " << _name << " destructor called\n";
+	std::cout << BLACK << "ScavTrap " << _name << " destructor called\n" <, RESET;
 }
 
 ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name)
 {
-	std::cout << "ScavTrap " << _name << " constructor called\n";
+	std::cout << BLACK << "ScavTrap " << _name << " constructor called\n" << RESET;
 	_hitPoints = 100;
 	_energyPoints = 50;
 	_attackDamage = 20;
@@ -20,12 +23,12 @@ ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name)
 
 ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other)
 {
-	std::cout << "ScavTrap " << _name << " copy constructor called\n";
+	std::cout << BLACK << "ScavTrap " << _name << " copy constructor called\n" << RESET;
 }
 
 ScavTrap&	ScavTrap::operator=(const ScavTrap& other)
 {
-	std::cout << "ScavTrap " << _name << " copy assignment operator called\n";
+	std::cout << BLACK << "ScavTrap " << _name << " copy assignment operator called\n" << RESET;
 	if (this != &other) {
 		ClapTrap::operator=(other);
 	}
