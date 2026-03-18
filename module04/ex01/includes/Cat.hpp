@@ -2,6 +2,7 @@
 # define CAT_HPP
 
 # include "Animal.hpp"
+# include "Brain.hpp"
 
 class	Cat: public Animal
 {
@@ -13,6 +14,10 @@ class	Cat: public Animal
 
 	public:
 		void makeSound() const override;
+		const std::string& getIdea() const;
+
+	private:
+		Brain*	_brain;
 };
 
 #endif

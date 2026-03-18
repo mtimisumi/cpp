@@ -4,9 +4,11 @@
 # include <iostream>
 # include <string>
 
-
 class	Animal
 {
+	public:
+		static bool debug;
+
 	public:
 		Animal();
 		Animal(const Animal& other);
