@@ -1,12 +1,12 @@
 #include "DiamondTrap.hpp"
 
 DiamondTrap::DiamondTrap()
-	: ClapTrap(), ScavTrap(), FragTrap(), _name("default")
+	: ClapTrap(), ScavTrap(), FragTrap(), _name("default"),
 {
 	std::cout << BLACK << "DiamondTrap default constructor called\n" << RESET;
-	_hitPoints = FragTrap::_hitPoints;
-	_energyPoints = ScavTrap::_energyPoints;
-	_attackDamage = FragTrap::_attackDamage;
+	_hitPoints = 100;
+	_energyPoints = 50;
+	_attackDamage = 30;
 }
 
 DiamondTrap::~DiamondTrap()
@@ -34,8 +34,6 @@ DiamondTrap&	DiamondTrap::operator=(const DiamondTrap& other)
 	std::cout << BLACK << "DiamondTrap " << _name << " copy assignment operator called\n" << RESET;
 	if (this != &other) {
 		ClapTrap::operator=(other);
-		ScavTrap::operator=(other);
-		FragTrap::operator=(other);
 		_name = other._name;
 	}
 	return *this;

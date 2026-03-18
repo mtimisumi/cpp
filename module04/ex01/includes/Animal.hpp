@@ -3,12 +3,10 @@
 
 # include <iostream>
 # include <string>
+# include "debugEnable.hpp"
 
 class	Animal
 {
-	public:
-		static bool debug;
-
 	public:
 		Animal();
 		Animal(const Animal& other);

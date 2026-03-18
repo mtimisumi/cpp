@@ -5,14 +5,14 @@ Cat::Cat() : Animal()
 	_type = "Cat";
 	_brain = new Brain;
 	_brain->haveIdeas("cat ideas");
-	if (debug)
+	if (debugEnable)
 		std::cout << "Cat default constructor called\n";
 }
 
 Cat::Cat(const Cat& other)
 {
 	*this = other;
-	if (debug)
+	if (debugEnable)
 		std::cout << "Cat copy constructor called\n";
 }
 
@@ -23,7 +23,7 @@ Cat&	Cat::operator=(const Cat& other)
 		delete _brain;
 		_brain = new Brain(*other._brain);
 	}
-	if (debug)
+	if (debugEnable)
 		std::cout << "Cat copy assignment operator called\n";
 	return (*this);
 }
@@ -31,7 +31,7 @@ Cat&	Cat::operator=(const Cat& other)
 Cat::~Cat()
 {
 	delete _brain;
-	if (debug)
+	if (debugEnable)
 		std::cout << "Cat destructor called\n";
 }
 

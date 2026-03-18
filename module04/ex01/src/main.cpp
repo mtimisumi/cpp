@@ -4,7 +4,7 @@
 
 int	main()
 {
-	Animal::debug = false;
+	bool debugEnable = false;
 	Animal *animals[100];
 
 	for (int i = 0; i < 50; i++)
@@ -21,7 +21,7 @@ int	main()
 	for (int i = 0; i < 100; i++)
 		delete animals[i];
 
-	Animal::debug = true;
+	debugEnable = true;
 	Dog dog;
 	Cat cat;
 
