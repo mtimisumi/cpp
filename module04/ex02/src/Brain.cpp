@@ -4,15 +4,13 @@ Brain::Brain()
 {
 	for (int i = 0; i < 100; i++)
 		_ideas[i] = "Empty idea";
-	if (debugEnable)
-		std::cout << "Brain default constructor called\n";
+	std::cout << "Brain default constructor called\n";
 }
 
 Brain::Brain(const Brain& other)
 {
 	*this = other;
-	if (debugEnable)
-		std::cout << "Brain copy constructor called\n";
+	std::cout << "Brain copy constructor called\n";
 }
 
 Brain&	Brain::operator=(const Brain& other)
@@ -21,15 +19,13 @@ Brain&	Brain::operator=(const Brain& other)
 		for (int i = 0; i < 100; i++)
 			_ideas[i] = other._ideas[i];
 	}
-	if (debugEnable)
-		std::cout << "Brain copy assignment operator called\n";
+	std::cout << "Brain copy assignment operator called\n";
 	return *this;
 }
 
 Brain::~Brain()
 {
-	if (debugEnable)
-		std::cout << "Brain destructor called\n";
+	std::cout << "Brain destructor called\n";
 }
 
 void	Brain::setIdea(const std::string& idea)

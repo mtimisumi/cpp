@@ -14,7 +14,7 @@ class	Brain
 		~Brain();
 
 	public:
-		void	haveIdeas(const std::string& ideas);
+		void setIdea(const std::string& idea);
 		const std::string&	getIdea() const;
 
 	private:

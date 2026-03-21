@@ -3,13 +3,17 @@
 
 int	main()
 {
+	// Animal b;
+	// b.makeSound();
+
+	// Animal *c = new Animal;
+	// c->makeSound();
+
 	Animal *a = new Dog;
 	a->makeSound();
-	delete a;
+	Animal *b = new Cat;
+	b->makeSound();
 
-	Animal b;
-	b.makeSound();
+	delete a; delete b;
 
-	Animal *c = new Animal;
-	c->makeSound();
 }

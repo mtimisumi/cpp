@@ -20,18 +20,7 @@ int	main()
 
 	delete a; delete c; delete d;
 
-	WrongAnimal *wa = new WrongAnimal;
 	WrongAnimal *wc = new WrongCat;
-
-	std::cout << std::endl << "wa type: " << wa->getType() << std::endl;
-	std::cout << "wa sound: "; wa->makeSound(); std::cout << std::endl;
-
-	// the type does get updated correctly as we do call the wrongcat constructor
-	std::cout << "wc type: " << wc->getType() << std::endl;
-	std::cout << "wc sound: "; wc->makeSound(); std::cout << std::endl;
-
-	// the compiler still only looks at the pointer's type
-	(*wc).makeSound();
-
-	delete wa; delete wc;
+	std::cout << std::endl << "wc sound: "; wc->makeSound(); std::cout << std::endl;
+	delete wc;
 }

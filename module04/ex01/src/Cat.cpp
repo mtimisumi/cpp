@@ -4,14 +4,14 @@ Cat::Cat() : Animal()
 {
 	_type = "Cat";
 	_brain = new Brain;
-	_brain->haveIdeas("cat ideas");
 	if (debugEnable)
 		std::cout << "Cat default constructor called\n";
 }
 
 Cat::Cat(const Cat& other)
 {
-	*this = other;
+	_type = other._type;
+	_brain = new Brain(*other._brain);
 	if (debugEnable)
 		std::cout << "Cat copy constructor called\n";
 }
@@ -39,6 +39,12 @@ void	Cat::makeSound() const
 {
 	std::cout << "Meow\n";
 }
+
+void Cat::haveIdea(const std::string& idea)
+{
+	_brain->setIdea(idea);
+}
+
 
 const std::string& Cat::getIdea() const
 {

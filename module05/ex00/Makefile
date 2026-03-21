@@ -1,11 +1,12 @@
-NAME = animal
+NAME = 
 
 CC = c++
 
 # it is not mandatory for codam students to follow the c++98 rules
 FLAGS = -Wall -Wextra -Werror -Iincludes
 
-SRCS	:= src/main.cpp src/Animal.cpp src/Cat.cpp src/Dog.cpp src/Brain.cpp
+SRCS	:= 
+
 OBJS	:= $(patsubst src/%.cpp, .obj/%.o, $(SRCS))
 
 all: $(NAME)

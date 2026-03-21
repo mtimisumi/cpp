@@ -2,13 +2,13 @@
 
 Dog::Dog() : Animal()
 {
-	std::cout << "Dog default constructor called\n";
 	_type = "Dog";
+	std::cout << "Dog default constructor called\n";
 }
 
 Dog::Dog(const Dog& other)
 {
-	*this = other;
+	_type = other._type;
 	std::cout << "Dog copy constructor called\n";
 }
 

@@ -14,6 +14,7 @@ class	Dog: public Animal
 
 	public:
 		void makeSound() const override;
+		void haveIdea(const std::string& idea);
 		const std::string& getIdea() const;
 
 	private:

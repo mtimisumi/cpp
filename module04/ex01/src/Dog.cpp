@@ -4,14 +4,14 @@ Dog::Dog() : Animal()
 {
 	_type = "Dog";
 	_brain = new Brain;
-	_brain->haveIdeas("dog ideas");
 	if (debugEnable)
 		std::cout << "Dog default constructor called\n";
 }
 
 Dog::Dog(const Dog& other)
 {
-	*this = other;
+	_type = other._type;
+	_brain = new Brain(*other._brain);
 	if (debugEnable)
 		std::cout << "Dog copy constructor called\n";
 }
@@ -38,6 +38,11 @@ Dog::~Dog()
 void	Dog::makeSound() const
 {
 	std::cout << "Woof\n";
+}
+
+void	Dog::haveIdea(const std::string& idea)
+{
+	_brain->setIdea(idea);
 }
 
 const std::string&	Dog::getIdea() const
