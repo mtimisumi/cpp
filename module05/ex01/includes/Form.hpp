@@ -1,7 +1,6 @@
-#ifndef FORM_HPP
-# define FORM_HPP
+#pragma once
 
-# include "Bureaucrat.hpp"
+#include "Bureaucrat.hpp"
 
 class Form
 {
@@ -16,7 +15,7 @@ class Form
 		int getSignGrade() const;
 		int getExecuteGrade() const;
 
-		void signForm(const Bureaucrat& b);
+		void beSigned(const Bureaucrat& b);
 
 	private:
 		class GradeTooHighException : public std::exception
@@ -38,5 +37,3 @@ class Form
 };
 
 std::ostream& operator<<(std::ostream& os, const Form& f);
-
-#endif

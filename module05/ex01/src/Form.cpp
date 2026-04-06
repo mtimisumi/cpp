@@ -45,7 +45,7 @@ int Form::getExecuteGrade() const
 	return _executeGrade;
 }
 
-void Form::signForm(const Bureaucrat& b)
+void Form::beSigned(const Bureaucrat& b)
 {
 	if (_isSigned) {
 		std::cout << b.getName() << " couldn't sign " << _formName
@@ -60,15 +60,20 @@ void Form::signForm(const Bureaucrat& b)
 	_isSigned = true;
 }
 
+const char*	Form::GradeTooHighException::what() const noexcept
+{
+	return "Grade is too high";
+}
+
+const char*	Form::GradeTooLowException::what() const noexcept
+{
+	return "Grade is too low";
+}
+
 std::ostream& operator<<(std::ostream& os, const Form& f)
 {
 	os << f.getFormName() << " with sign grade " << f.getSignGrade()
-		<< " and execute grade " << f.getExecuteGrade();
-
-	if (f.getIsSigned())
-		std::cout << " is signed";
-	else
-		std::cout << " is unsigned";
+		<< " and execute grade " << (f.getExecuteGrade() ? "signed" : "unsigned");
 
 	return os;
 }
