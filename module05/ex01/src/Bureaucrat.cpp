@@ -13,7 +13,6 @@ Bureaucrat::Bureaucrat(const Bureaucrat& other)
 	: _name(other._name), _grade(other._grade)
 {}
 
-
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 {
 	if (this != &other) {
@@ -58,6 +57,11 @@ const char*	Bureaucrat::GradeTooHighException::what() const noexcept
 const char*	Bureaucrat::GradeTooLowException::what() const noexcept
 {
 	return "Grade is too low";
+}
+
+void Bureaucrat::beSigned()
+{
+	Form::signForm(*this);
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& b)
