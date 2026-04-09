@@ -47,15 +47,8 @@ int Form::getExecuteGrade() const
 
 void Form::beSigned(const Bureaucrat& b)
 {
-	if (_isSigned) {
-		std::cout << b.getName() << " couldn't sign " << _formName
-			<< " because the form is already signed\n";
-		return ;
-	}
 	if (_signGrade < b.getGrade()) {
-		std::cout << b.getName() << " couldn't sign " << _formName
-			<< " because the grade is too low to sign\n";
-		return ;
+		throw GradeTooLowException();
 	}
 	_isSigned = true;
 }
