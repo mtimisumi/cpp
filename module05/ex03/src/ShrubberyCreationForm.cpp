@@ -41,3 +41,8 @@ void ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 				"               |||             \n"
 				"        , -=-~  .-^- _         \n";
 }
+
+void ShrubberyCreationForm::printForm(std::ostream& os) const
+{
+	os << std::setw(15) << "Target: " << _target << std::endl;
+}

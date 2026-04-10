@@ -4,10 +4,15 @@ Intern::Intern()
 {}
 
 Intern::Intern(const Intern& other)
-{}
+{
+	(void) other;
+}
 
 Intern& Intern::operator=(const Intern& other)
-{}
+{
+	(void) other;
+	return *this;
+}
 
 Intern::~Intern()
 {}
@@ -30,13 +35,13 @@ AForm* Intern::createShrubbery(const std::string& target)
 AForm* Intern::makeForm(const std::string& form, const std::string& target)
 {
 	static const std::string forms[] = {"robotomy request", "presidential pardon", "shrubbery creation"};
-	static AForm* (Intern::*f[](const std::string&)) = {&Intern::createRobotomy, &Intern::createPresidential, &Intern::createShrubbery};
+	static AForm* (Intern::*f[])(const std::string&) = {&Intern::createRobotomy, &Intern::createPresidential, &Intern::createShrubbery};
 
 	for (int i = 0; i < FORM_COUNT; i++)
 	{
 		if (form == forms[i]) {
 			std::cout << "Intern creates form: " << forms[i] << std::endl;
-			return (this->*f[i](target));
+			return (this->*f[i])(target);
 		}
 	}
 	throw InvalidFormException();

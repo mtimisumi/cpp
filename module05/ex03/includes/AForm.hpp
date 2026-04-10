@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Bureaucrat.hpp"
+#include <iomanip>
 
 class AForm
 {
@@ -18,6 +19,8 @@ class AForm
 		void beSigned(const Bureaucrat& b);
 		virtual void execute(const Bureaucrat& executor) const = 0;
 		void executeOK(const Bureaucrat& executor) const;
+
+		virtual void printForm(std::ostream& os) const = 0;
 
 	private:
 		class GradeTooHighException : public std::exception

@@ -6,7 +6,7 @@ CC = c++
 FLAGS = -Wall -Wextra -Werror -Iincludes -g
 
 SRCS	:= src/main.cpp src/Bureaucrat.cpp src/AForm.cpp src/PresidentialPardonForm.cpp \
-		   src/RobotomyRequestForm.cpp src/ShrubberyCreationForm.cpp src/intern.cpp
+		   src/RobotomyRequestForm.cpp src/ShrubberyCreationForm.cpp src/Intern.cpp
 
 OBJS	:= $(patsubst src/%.cpp, .obj/%.o, $(SRCS))
 

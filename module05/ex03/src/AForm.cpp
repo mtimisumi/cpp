@@ -77,10 +77,11 @@ const char* AForm::FormNotSignedException::what() const noexcept
 
 std::ostream& operator<<(std::ostream& os, const AForm& f)
 {
-	os << f.getFormName() << " with sign grade " << f.getSignGrade()
-		<< " and execute grade " << (f.getExecuteGrade() ? "signed" : "unsigned");
-
-	// we should call a virtual function that will print our data
+	os << std::setw(15) << "Form name: " << f.getFormName() << std::endl;
+	os << std::setw(15) <<"Signed: " << (f.getIsSigned() ? "yes" : "no") << std::endl;
+	os << std::setw(15) <<"Sign grade: " << f.getSignGrade() << std::endl;
+	os << std::setw(15) <<"Execute grade: " << f.getExecuteGrade() << std::endl;
+	f.printForm(os);
 
 	return os;
 }

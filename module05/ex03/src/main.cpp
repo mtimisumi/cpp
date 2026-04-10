@@ -12,7 +12,10 @@ int	main()
 	presidentialForm = judy.makeForm("presidential pardon", "Charles");
 	shrubberyForm = judy.makeForm("shrubbery creation", "Richard");
 
-	std::cout << "Printing robotomy form:\n" << *robotomyForm;
+	std::cout << std::endl;
+	std::cout << "Printing robotomy form:\n" << *robotomyForm << std::endl;
+	std::cout << "Printing presidential form:\n" << *presidentialForm << std::endl;
+	std::cout << "Printing shrubbery form:\n" << *shrubberyForm << std::endl;
 
 	try
 	{
@@ -25,7 +28,8 @@ int	main()
 	try
 	{
 		presidentialForm = judy.makeForm("presidential pardon", "Henry");
-		std::cout << "Succesfully created form presidential pardon!\n";
+		std::cout << std::endl;
+		std::cout << "Printing presidential form:\n" << *presidentialForm << std::endl;
 	}
 	catch(const std::exception& e) {
 		std::cout << "Could not create form because: " << e.what() << std::endl;

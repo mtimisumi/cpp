@@ -25,3 +25,8 @@ void PresidentialPardonForm::execute(const Bureaucrat& executor) const
 	AForm::executeOK(executor);
 	std::cout << _target << " has been pardoned by Zaphod Beeblebrox.\n";
 }
+
+void PresidentialPardonForm::printForm(std::ostream& os) const
+{
+	os << std::setw(15) << "Target: " << _target << std::endl;
+}
