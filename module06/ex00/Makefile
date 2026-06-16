@@ -5,7 +5,7 @@ CC = c++
 # it is not mandatory for codam students to follow the c++98 rules
 FLAGS = -Wall -Wextra -Werror -Iincludes
 
-SRCS	:= src/main.cpp
+SRCS	:= src/main.cpp src/ScalarConverter.cpp
 
 OBJS	:= $(patsubst src/%.cpp, .obj/%.o, $(SRCS))
 

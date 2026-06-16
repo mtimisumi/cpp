@@ -5,6 +5,9 @@
 
 class ScalarConverter
 {
+	private:
+		enum Type{PSEUDO, CHAR, INT, DOUBLE, FLOAT, INVALID};
+	
 	public:
 		ScalarConverter() = delete;
 		ScalarConverter(const ScalarConverter& other) = delete;
@@ -15,9 +18,8 @@ class ScalarConverter
 
 	private:
 		static bool all_displayable(const std::string& s);
-		static void detectType(const std::string& s);
+		static Type detectType(const std::string& s);
 		static bool isPseudo(const std::string& s);
 
-	private:
-		enum class Type{PSEUDO, CHAR, INT, DOUBLE, FLOAT, INVALID};
+
 };

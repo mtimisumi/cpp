@@ -1,7 +1,5 @@
 #include "ScalarConverter.hpp"
 
-Type::INVALID;
-
 void ScalarConverter::convert(const std::string& s)
 {
 	if (!all_displayable(s)) {
@@ -9,7 +7,9 @@ void ScalarConverter::convert(const std::string& s)
 		return ;
 	}
 
-	detectType();
+	ScalarConverter::Type type = detectType(s);
+	if (type == PSEUDO)
+		std::cout << "hello";
 }
 
 bool ScalarConverter::all_displayable(const std::string& s)
@@ -23,8 +23,18 @@ bool ScalarConverter::all_displayable(const std::string& s)
 	return true;
 }
 
-void ScalarConverter::detectType(const std::string& s)
+ScalarConverter::Type ScalarConverter::detectType(const std::string& s)
 {
 	if (isPseudo(s))
-		Type = PSEUDO;
+		return PSEUDO;
+	return INVALID;
+}
+
+bool ScalarConverter::isPseudo(const std::string& s)
+{
+	if (s == "-inf" || s == "+inf" || s == "nan" ||
+			s == "-inff" || s == "+inff" || s == "nanff")
+				return true;
+
+	return false;
 }
