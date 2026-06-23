@@ -20,6 +20,8 @@ class ScalarConverter
 		static bool all_displayable(const std::string& s);
 		static Type detectType(const std::string& s);
 		static bool isPseudo(const std::string& s);
-
-
+		static bool isChar(const std::string& s);
+		static bool isInt(const std::string& s);
+		static bool isDouble(const std::string& s);
+		static bool isFloat(const std::string& s);
 };
