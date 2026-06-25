@@ -9,7 +9,17 @@ void ScalarConverter::convert(const std::string& s)
 
 	ScalarConverter::Type type = detectType(s);
 	if (type == PSEUDO)
-		std::cout << "hello";
+		std::cout << "pseudo\n";
+	else if (type == CHAR)
+		std::cout << "char\n";
+	else if (type == INT)
+		std::cout << "int\n";
+	else if (type == DOUBLE)
+		std::cout << "double\n";
+	else if (type == FLOAT)
+		std::cout << "float\n";
+	else
+		std::cout << "invalid\n";
 }
 
 bool ScalarConverter::all_displayable(const std::string& s)
@@ -93,7 +103,7 @@ bool ScalarConverter::isDouble(const std::string& s)
 	if (s[0] == '-')
 		temp = temp.substr(1);
 
-	int pos = temp.find_first_of('.');
+	std::string::size_type pos = temp.find_first_of('.');
 	if (pos == std::string::npos)
 		return false;
 
