@@ -183,8 +183,8 @@ void ScalarConverter::convertInt(const std::string& s)
 		std::cout << "impossible\n";
 
 	std::cout << i << std::endl;
-	std::cout << static_cast<double>(i) << std::endl;
-	std::cout << static_cast<float>(i) << std::endl;
+	std::cout << static_cast<double>(i) << ".0\n";
+	std::cout << static_cast<float>(i) << ".0f\n";
 }
 
 void ScalarConverter::convertDouble(const std::string& s)
@@ -197,8 +197,17 @@ void ScalarConverter::convertDouble(const std::string& s)
 		std::cout << "impossible\n";
 
 	std::cout << static_cast<int>(d) << std::endl;
-	std::cout << d << std::endl;
-	std::cout << static_cast<float>(d) << std::endl;
+
+	if (static_cast<int>(d) == d)
+	{
+		std::cout << d << ".0\n";
+		std::cout << static_cast<float>(d) << ".0f\n";
+	}
+	else
+	{
+		std::cout << d << std::endl;
+		std::cout << static_cast<float>(d) << "f\n";
+	}
 }
 
 void ScalarConverter::convertFloat(const std::string& s)
@@ -211,6 +220,12 @@ void ScalarConverter::convertFloat(const std::string& s)
 		std::cout << "impossible\n";
 
 	std::cout << static_cast<int>(f) << std::endl;
+
+	if (static_cast<int>(f) == f)
+	{
+		std::cout << static_cast<double>(f) << ".0\n";
+		std::cout << f << ".0f\n";
+	}
 	std::cout << static_cast<double>(f) << std::endl;
-	std::cout << f << std::endl;
+	std::cout << f << "f\n";
 }

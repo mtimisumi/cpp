@@ -2,6 +2,6 @@
 
 int main()
 {
-	std::string s = "42";
+	std::string s = "0";
 	ScalarConverter::convert(s);
 }
