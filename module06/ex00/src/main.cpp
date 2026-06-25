@@ -2,8 +2,6 @@
 
 int main()
 {
-	std::cout << "hi\n";
-
-	std::string s = "nanf";
+	std::string s = "42";
 	ScalarConverter::convert(s);
 }
