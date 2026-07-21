@@ -5,6 +5,12 @@
 
 class AForm
 {
+	private:
+		const std::string	_formName;
+		bool 				_isSigned = false;
+		const int			_signGrade;
+		const int			_executeGrade;
+
 	public:
 		AForm(const std::string& formName, int signGrade, int executeGrade);
 		AForm(const AForm& other);
@@ -15,12 +21,10 @@ class AForm
 		bool getIsSigned() const;
 		int getSignGrade() const;
 		int getExecuteGrade() const;
-
 		void beSigned(const Bureaucrat& b);
 		virtual void execute(const Bureaucrat& executor) const = 0;
 		void executeOK(const Bureaucrat& executor) const;
-
-		virtual void printForm(std::ostream& os) const = 0;
+		virtual void printTarget(std::ostream& os) const = 0;
 
 	private:
 		class GradeTooHighException : public std::exception
@@ -33,17 +37,16 @@ class AForm
 			public:
 				const char* what() const noexcept override;
 		};
+		class FormAlreadySignedException : public std::exception
+		{
+			public:
+				const char* what() const noexcept override;
+		};
 		class FormNotSignedException : public std::exception
 		{
 			public:
 				const char* what() const noexcept override;
 		};
-
-	private:
-		const std::string	_formName;
-		bool 				_isSigned = false;
-		const int			_signGrade;
-		const int			_executeGrade;
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& f);

@@ -30,7 +30,7 @@ void RobotomyRequestForm::execute(const Bureaucrat& executor) const
 		std::cout << _target << "robotomization failed.\n";
 }
 
-void RobotomyRequestForm::printForm(std::ostream& os) const
+void RobotomyRequestForm::printTarget(std::ostream& os) const
 {
 	os << std::setw(15) << "Target: " << _target << std::endl;
 }

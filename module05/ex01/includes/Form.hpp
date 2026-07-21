@@ -4,6 +4,12 @@
 
 class Form
 {
+	private:
+		const std::string	_formName;
+		bool 				_isSigned = false;
+		const int			_signGrade;
+		const int			_executeGrade;
+
 	public:
 		Form(const std::string& formName, int signGrade, int executeGrade);
 		Form(const Form& other);
@@ -28,12 +34,11 @@ class Form
 			public:
 				const char* what() const noexcept override;
 		};
-
-	private:
-		const std::string	_formName;
-		bool 				_isSigned = false;
-		const int			_signGrade;
-		const int			_executeGrade;
+		class FormAlreadySignedException : public std::exception
+		{
+			public:
+				const char* what() const noexcept override;
+		};
 };
 
 std::ostream& operator<<(std::ostream& os, const Form& f);

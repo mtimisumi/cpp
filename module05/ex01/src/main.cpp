@@ -13,7 +13,7 @@ int	main()
 	}
 	try
 	{
-		Form C("C", 10, 0);
+		Form C("C", 0, 10);
 		std::cout << C << std::endl;
 	}
 	catch (const std::exception& e)
@@ -23,12 +23,15 @@ int	main()
 	std::cout << std::endl;
 
 	Form A("A", 10, 5);
-	Bureaucrat lily("Lily", 30);
+	std::cout << A << std::endl;
+	Bureaucrat lily("Lily", 3);
 	std::cout << lily << std::endl;
 	lily.signForm(A);
 	std::cout << A << std::endl;
-	Bureaucrat matilda("Matilda", 3);
+	Bureaucrat matilda("Matilda", 30);
 	std::cout << matilda << std::endl;
 	matilda.signForm(A);
-	std::cout << A << std::endl;
+	Bureaucrat denise("Denise", 2);
+	std::cout << denise << std::endl;
+	denise.signForm(A);
 }

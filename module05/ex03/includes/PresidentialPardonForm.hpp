@@ -11,7 +11,7 @@ class PresidentialPardonForm : public AForm
 		~PresidentialPardonForm() override;
 
 		void execute(const Bureaucrat& executor) const override;
-		void printForm(std::ostream& os) const override;
+		void printTarget(std::ostream& os) const override;
 
 	private:
 		std::string _target;

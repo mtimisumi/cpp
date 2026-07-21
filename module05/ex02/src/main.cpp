@@ -17,8 +17,9 @@ int	main()
 	emi.signForm(peasantKiara);
 	std::cout << std::endl;
 
-	std::cout << "emi executing form robotElla:\n"; emi.executeForm(robotElla);
-	std::cout << "emi executing form shrubbyTree:\n"; emi.executeForm(shrubbyTree);
+	std::cout << "Emi executing form robotElla:\n"; emi.executeForm(robotElla);
+	std::cout << std::endl;
+	std::cout << "Emi executing form shrubbyTree:\n"; emi.executeForm(shrubbyTree);
 	// printing the tree
 	std::ostringstream ss;
 	std::ifstream file("Tree_shrubbery");
@@ -26,19 +27,13 @@ int	main()
 	if (file) {
 		std::cout << ss.str() << std::endl;
 	}
-
-	std::cout << "emi executing form peasantKiara:\n"; emi.executeForm(peasantKiara);
 	std::cout << std::endl;
 
-	// need grade 5 to execute peasantKiara form
+	std::cout << "Emi executing form peasantKiara:\n"; emi.executeForm(peasantKiara);
+	std::cout << std::endl;
+
+	// incrementing grade 5 to 6
 	emi.incrementGrade();
 	std::cout << emi << std::endl;
-	std::cout << "emi executing form peasantKiara:\n"; emi.executeForm(peasantKiara); std::cout << std::endl;
-
-	AForm* forms[3];
-	forms[0] = &peasantKiara; emi.executeForm(*forms[0]);
-	forms[1] = &robotElla; emi.executeForm(*forms[1]);
-	forms[2] = &shrubbyTree; emi.executeForm(*forms[2]);
-
-
+	std::cout << "Emi executing form peasantKiara:\n"; emi.executeForm(peasantKiara); std::cout << std::endl;
 }
