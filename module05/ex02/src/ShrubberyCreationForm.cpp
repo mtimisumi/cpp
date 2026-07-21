@@ -20,11 +20,10 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {}
 
-void ShrubberyCreationForm::execute(const Bureaucrat& executor) const
+void ShrubberyCreationForm::executeAction() const
 {
-	AForm::executeOK(executor);
 	std::ofstream outfile(_target + "_shrubbery");
-	if (!outfile) {
+	if (!outfile.is_open()) {
 		throw std::runtime_error("Failed to create file");
 	}
 	outfile <<	"           &&& &&  & &&        \n"

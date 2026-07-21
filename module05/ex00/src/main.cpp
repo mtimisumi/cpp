@@ -4,7 +4,7 @@ int	main()
 {
 	try
 	{
-		Bureaucrat h("Henk", 233);
+		Bureaucrat h("Henk", 151);
 	}
 	catch (const std::exception& e)
 	{

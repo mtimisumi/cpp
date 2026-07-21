@@ -11,7 +11,7 @@ class RobotomyRequestForm : public AForm
 		RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
 		~RobotomyRequestForm() override;
 
-		void execute(const Bureaucrat& executor) const override;
+		void executeAction() const override;
 		void printTarget(std::ostream& os) const override;
 
 	private:

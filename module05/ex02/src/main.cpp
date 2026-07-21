@@ -9,31 +9,34 @@ int	main()
 	RobotomyRequestForm robotElla("Ella");
 	ShrubberyCreationForm shrubbyTree("Tree");
 
-	Bureaucrat emi("Emi", 6);
+	Bureaucrat emi("Emi", 5);
 	std::cout << emi << std::endl << std::endl;
 
 	emi.signForm(robotElla);
-	emi.signForm(shrubbyTree);
-	emi.signForm(peasantKiara);
+	emi.executeForm(robotElla);
 	std::cout << std::endl;
 
-	std::cout << "Emi executing form robotElla:\n"; emi.executeForm(robotElla);
+	emi.signForm(peasantKiara);
+	emi.executeForm(peasantKiara);
 	std::cout << std::endl;
-	std::cout << "Emi executing form shrubbyTree:\n"; emi.executeForm(shrubbyTree);
+
+	emi.signForm(shrubbyTree);
+	emi.executeForm(shrubbyTree);
+	std::cout << std::endl;
+
 	// printing the tree
 	std::ostringstream ss;
 	std::ifstream file("Tree_shrubbery");
+	if (!file.is_open())
+		return 1;
 	ss << file.rdbuf();
-	if (file) {
-		std::cout << ss.str() << std::endl;
-	}
+	std::cout << ss.str() << std::endl;
 	std::cout << std::endl;
 
-	std::cout << "Emi executing form peasantKiara:\n"; emi.executeForm(peasantKiara);
-	std::cout << std::endl;
+	// invalid case
+	ShrubberyCreationForm shrub("Shrub");
+	Bureaucrat b("B", 150);
 
-	// incrementing grade 5 to 6
-	emi.incrementGrade();
-	std::cout << emi << std::endl;
-	std::cout << "Emi executing form peasantKiara:\n"; emi.executeForm(peasantKiara); std::cout << std::endl;
+	b.executeForm(shrub);
+	b.signForm(shrub);
 }

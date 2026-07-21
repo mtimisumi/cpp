@@ -20,7 +20,6 @@ class Form
 		bool getIsSigned() const;
 		int getSignGrade() const;
 		int getExecuteGrade() const;
-
 		void beSigned(const Bureaucrat& b);
 
 	private:

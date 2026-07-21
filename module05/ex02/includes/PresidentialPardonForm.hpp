@@ -10,7 +10,7 @@ class PresidentialPardonForm : public AForm
 		PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
 		~PresidentialPardonForm() override;
 
-		void execute(const Bureaucrat& executor) const override;
+		void executeAction() const override;
 
 	private:
 		std::string _target;
