@@ -1,5 +1,9 @@
 #include "AForm.hpp"
 
+AForm::AForm()
+	: _formName("Unknown"),  _signGrade(150), _executeGrade(150)
+{}
+
 AForm::AForm(const std::string& formName, int signGrade, int executeGrade)
 	: _formName(formName),  _signGrade(signGrade), _executeGrade(executeGrade)
 {

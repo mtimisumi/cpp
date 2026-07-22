@@ -1,5 +1,9 @@
 #include "Form.hpp"
 
+Form::Form()
+	: _formName("Unknown"),  _signGrade(150), _executeGrade(150)
+{}
+
 Form::Form(const std::string& formName, int signGrade, int executeGrade)
 	: _formName(formName),  _signGrade(signGrade), _executeGrade(executeGrade)
 {

@@ -4,7 +4,7 @@ int	main()
 {
 	try
 	{
-		Form B("B", 200, 50);
+		Form B("B", 50, 200);
 		std::cout << B << std::endl;
 	}
 	catch (const std::exception& e)
@@ -13,7 +13,7 @@ int	main()
 	}
 	try
 	{
-		Form C("C", 0, 10);
+		Form C("C", 10, 0);
 		std::cout << C << std::endl;
 	}
 	catch (const std::exception& e)
