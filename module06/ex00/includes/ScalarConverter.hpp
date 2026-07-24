@@ -27,10 +27,11 @@ class ScalarConverter
 		static void convertInt(const std::string& s);
 		static void convertDouble(const std::string& s);
 		static void convertFloat(const std::string& s);
+		static void convertInvalid();
 
-	public:
-		ScalarConverter() = delete;
-		ScalarConverter(const ScalarConverter& other) = delete;
-		ScalarConverter& operator=(const ScalarConverter& other) = delete;
-		~ScalarConverter() = delete;
+	private:
+		ScalarConverter();
+		ScalarConverter(const ScalarConverter& other);
+		ScalarConverter& operator=(const ScalarConverter& other);
+		~ScalarConverter();
 };
