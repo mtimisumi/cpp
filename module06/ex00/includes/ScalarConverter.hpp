@@ -2,21 +2,17 @@
 
 #include <string>
 #include <iostream>
+#include <cmath>
+#include <climits>
 
 class ScalarConverter
 {
-	private:
-		enum Type{PSEUDO, CHAR, INT, DOUBLE, FLOAT, INVALID};
-	
 	public:
-		ScalarConverter() = delete;
-		ScalarConverter(const ScalarConverter& other) = delete;
-		ScalarConverter& operator=(const ScalarConverter& other) = delete;
-		~ScalarConverter() = delete;
-
 		static void convert(const std::string& s);
 
 	private:
+		enum Type{PSEUDO, CHAR, INT, DOUBLE, FLOAT, INVALID};
+	
 		static bool all_displayable(const std::string& s);
 		static Type detectType(const std::string& s);
 
@@ -31,4 +27,10 @@ class ScalarConverter
 		static void convertInt(const std::string& s);
 		static void convertDouble(const std::string& s);
 		static void convertFloat(const std::string& s);
+
+	public:
+		ScalarConverter() = delete;
+		ScalarConverter(const ScalarConverter& other) = delete;
+		ScalarConverter& operator=(const ScalarConverter& other) = delete;
+		~ScalarConverter() = delete;
 };

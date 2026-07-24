@@ -8,18 +8,6 @@ void ScalarConverter::convert(const std::string& s)
 	}
 
 	ScalarConverter::Type type = detectType(s);
-	// if (type == PSEUDO)
-	// 	std::cout << "Pseudo\n";
-	// else if (type == CHAR)
-	// 	std::cout << "Char\n";
-	// else if (type == INT)
-	// 	std::cout << "Int\n";
-	// else if (type == DOUBLE)
-	// 	std::cout << "Double\n";
-	// else if (type == FLOAT)
-	// 	std::cout << "Float\n";
-	// else if (type == INVALID)
-	// 	std::cout << "Invalid\n";
 	switch (type)
 	{
 		case PSEUDO: convertPseudo(s); break ;
@@ -79,27 +67,19 @@ bool ScalarConverter::isChar(const std::string& s)
 
 bool ScalarConverter::isInt(const std::string& s)
 {
-	std::string temp = s;
+	size_t pos;
+	int value;
 
-	if (s[0] == '+' || s[0] == '-')
-		temp = temp.substr(1);
-
-	if (temp.empty())
-		return false;
-
-	for (char c: temp)
+	try
 	{
-		if (!isdigit(c))
-			return false;
+		value = std::stoi(s, &pos);
+	}
+	catch (const std::exception& e)
+	{
+		return false;
 	}
 
-	if (temp.length() > 10)
-		return false;
-
-	if (s[0] == '-' && temp.length() == 10 && temp > "2147483648")
-		return false;
-
-	if (s[0] != '-' && temp.length() == 10 && temp > "2147483647")
+	if (s[pos] != '\0')
 		return false;
 
 	return true;
@@ -107,41 +87,39 @@ bool ScalarConverter::isInt(const std::string& s)
 
 bool ScalarConverter::isDouble(const std::string& s)
 {
-	std::string temp = s;
+	size_t pos;
+	int value;
 
-	if (s[0] == '-')
-		temp = temp.substr(1);
-
-	std::string::size_type pos = temp.find_first_of('.');
-	if (pos == std::string::npos)
+	try
+	{
+		value = std::stod(s, &pos);
+	}
+	catch (const std::exception& e)
+	{
 		return false;
-
-	std::string number = temp.substr(0, pos);
-	std::string decimal = temp.substr(pos + 1);
-	if (number.empty() || decimal.empty())
-		return false;
-
-	for (char c: number) {
-		if (!isdigit(c))
-			return false;
 	}
 
-	for (char c: decimal) {
-		if (!isdigit(c))
-			return false;
-	}
+	if (s[pos] != '\0')
+		return false;
 
 	return true;
 }
 
 bool ScalarConverter::isFloat(const std::string& s)
 {
-	char f = s.back();
-	if (f != 'f')
-		return false;
+	size_t pos;
+	int value;
 
-	std::string temp = s.substr(0, s.length() - 1);
-	if (temp.empty() || !isDouble(temp))
+	try
+	{
+		value = std::stof(s, &pos);
+	}
+	catch (const std::exception& e)
+	{
+		return false;
+	}
+
+	if (s[pos] != '\0')
 		return false;
 
 	return true;
@@ -177,7 +155,7 @@ void ScalarConverter::convertInt(const std::string& s)
 {
 	int i = stoi(s);
 
-	if (i >= 32 && i < 127)
+	if (i >= 32 && i <= 126)
 		std::cout << "char: '" << static_cast<char>(i) << "'\n";
 	else if (i >= 0 && i <= 127)
 		std::cout << "char: non displayable\n";
@@ -193,16 +171,19 @@ void ScalarConverter::convertDouble(const std::string& s)
 {
 	double d = stod(s);
 
-	if (d >= 32 && d < 127)
-		std::cout << "char: '" << static_cast<char>(d) << "'\n";
-	else if (d >= 0 && d < 128)
-		std::cout << "char: non displayable\n";
+	if (d >= 32 && d <= 126)
+		std::cout << "char: ' " << static_cast<char>(d) << "'\n";
+	else if (d >= 0 && d <= 127)
+		std::cout << "char: nondisplayable\n";
 	else
 		std::cout << "char: impossible\n";
 
-	std::cout << "int: " << static_cast<int>(d) << std::endl;
+	if (d <= (double)INT_MAX && d >= (double)INT_MIN)
+		std::cout << "int: " << static_cast<int>(d) << std::endl;
+	else
+		std::cout << "int: impossible\n";
 
-	if (static_cast<int>(d) == d)
+	if (d == std::floor(d))
 	{
 		std::cout << "double: " << d << ".0\n";
 		std::cout << "float: " << static_cast<float>(d) << ".0f\n";
@@ -216,22 +197,28 @@ void ScalarConverter::convertDouble(const std::string& s)
 
 void ScalarConverter::convertFloat(const std::string& s)
 {
-	float f = stof(s);
+	float f = stod(s);
 
-	if (f >= 32 && f < 127)
-		std::cout << "char: '" << static_cast<char>(f) << "'\n";
-	else if (f >= 0 && f < 128)
-		std::cout << "char: non displayable\n";
+	if (f >= 32 && f <= 126)
+		std::cout << "char: ' " << static_cast<char>(f) << "'\n";
+	else if (f >= 0 && f <= 127)
+		std::cout << "char: nondisplayable\n";
 	else
 		std::cout << "char: impossible\n";
 
-	std::cout << "int: " << static_cast<int>(f) << std::endl;
+	if (f <= (float)INT_MAX && f >= (float)INT_MIN)
+		std::cout << "int: " << static_cast<int>(f) << std::endl;
+	else
+		std::cout << "int: impossible\n";
 
-	if (static_cast<int>(f) == f)
+	if (f == std::floor(f))
 	{
 		std::cout << "double: " << static_cast<double>(f) << ".0\n";
 		std::cout << "float: " << f << ".0f\n";
 	}
-	std::cout << "double: " << static_cast<double>(f) << std::endl;
-	std::cout << "float: " << f << "f\n";
+	else
+	{
+		std::cout << "double: " << static_cast<double>(f) << std::endl;
+		std::cout << "float: " << f << "f\n";
+	}
 }
