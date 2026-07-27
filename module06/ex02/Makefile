@@ -1,11 +1,11 @@
-NAME = serializer
+NAME = base
 
 CC = c++
 
 # it is not mandatory for codam students to follow the c++98 rules
 FLAGS = -Wall -Wextra -Werror -Iincludes
 
-SRCS	:= src/main.cpp src/Serializer.cpp
+SRCS	:= src/main.cpp src/Base.cpp src/A.cpp src/B.cpp src/C.cpp
 
 OBJS	:= $(patsubst src/%.cpp, .obj/%.o, $(SRCS))
 
