@@ -23,7 +23,7 @@ Base* Base::generate()
 		case 1: return (new B);
 		case 2: return (new C);
 	}
-	return NULL;
+	return nullptr;
 }
 
 void Base::identify(Base* p)
