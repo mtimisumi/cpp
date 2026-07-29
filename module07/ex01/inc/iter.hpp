@@ -1,10 +1,11 @@
 #pragma once
 
 #include <iostream>
+#include <string>
 
 template<typename T> void print(const T& value)
 {
-	std::cout << value << "\n";
+	std::cout << value;
 }
 
 void increment(int& value)
