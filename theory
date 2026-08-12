@@ -105,3 +105,9 @@ void iter(T* ptr, const int length, F func)
 }
 
 In ex02 from mod7 above we see we call the function with whatever is located at ptr[i]. The compiler checks this at compile time. If two types dont allign (lets say the function wants string but is passes int) its gonna give us the error.
+
+TPP FILES
+.tpp files are used to hold definitions of template code outside of the usual hpp header.
+Why do we need this instead of usual cpp file?
+Templates are not compiled into actual code until theyre instantiatedwith a concrete type. That means the compiler has to see the full definition of the template in every translation unit that uses it. (This is ofcourse not the case when lets say we make a unit of main.cpp and we include the header, but then we cannot see the full template definition yet, only when the matching cpp file from hpp file gets linked.)
+So tpp solves this. It is included in the header and treaded also as one single header. We only have two different files for the human readability.
