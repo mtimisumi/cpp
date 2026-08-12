@@ -1,0 +1,96 @@
+SOME THEORY:
+
+
+CPP Module 05
+
+STD::EXCEPTION
+
+Std::exception is a class holding all sorts of exceptions. When we throw an exception-object is created and stores the exception there. The stack starts to unwind fully, unless there’s a try catch block. If there is, it will go to the closest try catch block and you can handle it however you want (continue the program, exit program neatly). Lets say we ask the user for input but it’s wrong, we can use a try catch block to catch wrong input, and prompt the user to try again. Or we have a try catch block in the very beginning trying to run the program, if something throws we catch it at the very beginning of the program simply to output the error message and exit properly.
+
+The exception class has a lot of exceptions, so if we use the latter way of trying to catch at the beginning of the program, we are prepared to catch any throw. Whereas if we create our own class to handle specific exception cases, we would miss out on a lot of the exceptions from the exception class. Fine if we know what we can throw and we want to catch that specific thing. Not very useful for trying to catch a broad lot of exceptions.
+
+
+INHERITANCE
+
+Let’s say we have a student class. We could have a Bob/Mia/Fiona/etc. Class but they all inherit from the student class with its public functions. We might define a function in both of these classes. Void announce(); So there would be two functions in Bob with the same name. So which do we call upon?
+
+If we call on Bob we will of course first look into Bob's functions and call the announce function defined in Bob. If we have a Bob pointer we do the same. Now if we have a bunch of student pointers (holding Bob, Mia, Fiona, etc.) the compiler only sees them as student pointers. However, we still want each object to call its own custom announce() function. That's when we make the function virtual. A virtual function tells C++ that before calling the function, it should determine at runtime what type of object it is actually pointing to, and if a derived class has overridden that function, call that version instead.
+
+
+CPP Module 06
+
+STATIC
+
+To make a class static we cannot actually do it but we can make it behave like such. When having a static variable or function it belongs to the class itself, not an instance of the class. Static functions can thus only operate on static variables as they don’t belong to an instance and don’t know which instance to operate on. We don’t have that problem with static variables as they also don’t belong to a class, the classes just have access to that same variable.
+
+To make a static class we want it to not be instantiable, thus making it that we cannot call its constructor, by either making them private, or using the delete keyword.
+
+
+When creating an object from a class we always have this implicit *this pointer. When working inside class function and accessing class variables, the *this pointer implicitly gets added to the front to specify which variable form which instance we’re talking about.
+
+With nested types such as structs it works a little differently. Nested types are not stored in the class object itself but live in its scope. Meaning they are class scope and not object scoped. They hold no data (so we will never refer to it with the *this pointer) but only give us information about a certain structure. Accessing it we must do so through the class name. Not an implicit *this pointer.
+
+
+BUILDING AN EXECUTABLE(USING PRAGMA ONCE)
+
+It starts with the Preprocessor. This takes care of text manipulation. So purely finding/replacing text and copying/pasting text. It puts everything (including the includes) into a bigger cpp file(The Translation Unit). So one unit per cpp file.
+The Compiler Proper takes these big texts and parses it as C++, meaning: checking syntax, types, functions, etc. And turns it into assembly/object code.
+(So it will create a mental note of definitions like lets say classes. Once we get to the main where we actually create something (lets say a variable) we look into our notes and create this variable. If we encounter templates we get the function definition from our mental notes and copy this with the correct T type. And eventually we can turn this into object code.)
+The Assembler takes the assembly code and turns this into machine code, producing object files (.o files).
+The Linker links all the seperate .o files to each other and turns this into the final executable. Now u can run.
+
+
+When pragma once is encountered it will store the file name and keep track of this. When not yet encountered it will paste the contents, but if so it will skip this step making sure theres no double inclusion within a single translation unit. Ofcourse with more cpp files header can be included more often.
+
+
+STD::TIME STD::RAND
+
+To get a random number we can use the rand() function. You can pass it a random number and it will do some randomizing calculations on top of this number, resulting in a new random number. It will continue doing this with the new number it generated. If no starting number is given there will be a set number. So in the end it’s not so random.
+
+To avoid always having the same number as starting point (whether you hardcoded it or its the standard set number) you can use the static_cast<unsigned int>(std::time(NULL) to generate the current time to an unsigned int. Use this as a starting number and it is a lot more random.
+
+Ex:
+
+Bool seeded = false;
+
+If (!seeded)
+
+	srand() = static_cast<unsigned int>(std::time(NULL)
+
+rand() % 2 = true or false
+
+
+CASTING
+
+Instead of c’s way of casting: (float)3, in c++ there are three main ways of casting.
+
+STATIC CAST
+
+Creates a (temporary) new variable by conversion. It’s cast during compile time so checked by the compiler but never during runtime.
+
+REINTERPRET CAST
+
+Doesn’t change any of the bits but tells the compiler to look at it in a different way. So let’s say instead of looking at the bits like an int, like look at the first bit and interpret it as a char. Also is not checked during runtime so both this and static cast it dangerous if not used properly.
+
+DYNAMIC CAST
+
+Dynamic cast works specifically for polymorphic classes. They require the base class to have at least one virtual function. Upon having this the function gives the object a vptr(virtual pointer) that points to a vtable(virtual table). During runtime when needing to access the virtual function it will point us to this vtable where we can access the RTTI(runtime type information) and through this we have access to whatever the derived type is. Because it can check during runtime it’s safe. You can make a guess and dynamically cast it, if it’s wrong it will return a null pointer.
+
+
+EXCEPTION ORDER
+
+Why do we need to define an exception as a const std::exception& e? And how does it know the error?
+
+As soon as something throws it creates an exception object. This is the current exception object being handled. The runtime keeps track of the active exception. Now the program will go to the closest catch block to see how it’s handled. We catch the reference to the exception block because it's more resourceful to utilise a reference than it is to make a copy of it.
+
+Now lets say we are in a nested exception loop where multiple exception objects can exist. The runtime still knows which exception block is currently being handled and it will bind the correct reference block to it.
+
+
+
+TEMPLATES
+
+Templates are a feature in c++ where a function can receive lots of different types of variables, as long as it compiles correctly (the given type must be used with the right syntax in the function).
+
+template<typename T, typename F) void func(T a, T* b, F c) {}
+
+We specify the different types of variables we wanna take in which could be anything. We can put T as a function, as a pointer, just as an int. As long as it’s used appropriately.
