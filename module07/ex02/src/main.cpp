@@ -4,21 +4,40 @@
 
 int main()
 {
-	Array<std::string> s(3);
-	// s[0] = "zero";
-	// s[1] = "one";
-	// s[2] = "two";
-	// try
-	// {
-	// 	s[3] = "three";
-	// }
-	// catch (const std::exception& e)
-	// {
-	// 	std::cout << e.what() << "\n";
-	// }
+	Array<int> i(2);
 
-	// Array<std::string> copy = s;
-	// std::cout << s[0] << "\n";
-	// std::cout << s[1] << "\n";
-	// std::cout << s[2] << "\n";
+	std::cout << "Uninitialzed Array i:\n";
+	std::cout << i[0] << "\n";
+	std::cout << i[1] << "\n";
+
+	std::cout << "Array i size: " << i.size() << "\n\n";
+
+	Array<std::string> s(3);
+
+	// initializing s
+	s[0] = "zero";
+	s[1] = "one";
+	s[2] = "two";
+	try
+	{
+		s[3] = "three";
+	}
+	catch (const std::exception& e)
+	{
+		std::cout << "Caught exception: " << e.what() << "\n\n";
+	}
+
+	std::cout << "Array s size: " << s.size() << "\n";
+	std::cout << "Array s:\n";
+	std::cout << s[0] << "\n";
+	std::cout << s[1] << "\n";
+	std::cout << s[2] << "\n\n";
+
+	Array<std::string> copy = s;
+	std::cout << "Array copy size: " << s.size() << "\n";
+	std::cout << "Array copy:\n";
+	std::cout << copy[0] << "\n";
+	std::cout << copy[1] << "\n";
+	std::cout << copy[2] << "\n";
+
 }

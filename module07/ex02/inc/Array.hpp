@@ -25,3 +25,5 @@ class Array
 			const char* what() const noexcept override;
 		};
 };
+
+#include "Array.tpp"
