@@ -1,8 +1,10 @@
 #include "Array.hpp"
 
 template<typename T>
-Array<T>::Array() : _elements(nullptr), _size(0)
-{}
+Array<T>::Array() : _size(0)
+{
+	_elements = new T(0);
+}
 
 template<typename T>
 Array<T>::Array(unsigned int n) : _size(n)
@@ -13,12 +15,6 @@ Array<T>::Array(unsigned int n) : _size(n)
 template<typename T>
 Array<T>::Array(const Array& other) : _size(other._size)
 {
-	if (_size == 0)
-	{
-		_elements = nullptr;
-		return ;
-	}
-
 	_elements = new T[_size];
 
 	for (unsigned int i = 0; i < _size; i++)
