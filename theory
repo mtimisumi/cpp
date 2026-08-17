@@ -113,3 +113,14 @@ TPP FILES
 Why do we need this instead of usual cpp file?
 Templates are not compiled into actual code until theyre instantiatedwith a concrete type. That means the compiler has to see the full definition of the template in every translation unit that uses it. (This is ofcourse not the case when lets say we make a unit of main.cpp and we include the header, but then we cannot see the full template definition yet, only when the matching cpp file from hpp file gets linked.)
 So tpp solves this. It is included in the header and treaded also as one single header. We only have two different files for the human readability.
+
+CONTAINERS
+
+STL(STANDARD TEMPLATE LIBRARY)
+
+
+STD::ITERATOR
+An iterator is an object that behaves like a pointer to traverse and access elements of a container.
+begin() = returns iter to begin of container
+end() = return iter to element just after last of container, returning arr+N, cont.end()
+
