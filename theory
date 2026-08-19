@@ -121,6 +121,7 @@ STL(STANDARD TEMPLATE LIBRARY)
 
 STD::ITERATOR
 An iterator is an object that behaves like a pointer to traverse and access elements of a container.
+When dereferencing it you get the reference of the value its pointing at.
 begin() = returns iter to begin of container
 end() = return iter to element just after last of container, returning arr+N, cont.end()
 

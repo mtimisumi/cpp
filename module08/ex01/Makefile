@@ -1,11 +1,11 @@
-NAME = easyfind
+NAME = span
 
 CC = c++
 
 # it is not mandatory for codam students to follow the c++98 rules
 FLAGS = -Wall -Wextra -Werror -Iinc
 
-SRCS	:= src/main.cpp
+SRCS	:= src/main.cpp src/Span.cpp
 
 OBJS	:= $(patsubst src/%.cpp, .obj/%.o, $(SRCS))
 
