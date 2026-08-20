@@ -47,16 +47,15 @@ long Span::shortestSpan()const
 	if (_set.size() == 0 || _set.size() == 1)
 		throw NotEnoughNumbersException();
 
-	std::multiset<int>::iterator prev = _set.begin();
-	std::multiset<int>::iterator it;
-	long shortest INT64_MAX;
+	std::multiset<int>::iterator it = _set.begin();
+	std::multiset<int>::iterator next = std::next(it);
+	long shortest = INT64_MAX;
 
-	for (it = ++_set.begin(); it != _set.end(); ++it)
+	for (; next != _set.end(); ++it, ++next)
 	{
-		long diff = (long)*it - (long)*prev;
+		long diff = (long)*next - (long)*it;
 		if (diff < shortest)
 			shortest = diff;
-		prev = it;
 	}
 
 	return shortest;

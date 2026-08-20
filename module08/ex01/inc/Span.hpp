@@ -2,6 +2,8 @@
 #include <iostream>
 #include <set>
 #include <limits>
+#include <iterator>
+#include <algorithm>
 
 class Span
 {
@@ -23,9 +25,7 @@ class Span
 		template<typename T_iterator>
 		void addNumbers(T_iterator begin, T_iterator end)
 		{
-			T_iterator it;
-			for (it = begin; it != end; ++it)
-				addNumber(*it);
+			std::for_each(begin, end, [this](int n) {addNumber(n); });
 		}
 
 	private:
