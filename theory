@@ -111,8 +111,8 @@ Templates always need to be defined in the header file (or tpp file). Why? Becau
 TPP FILES
 .tpp files are used to hold definitions of template code outside of the usual hpp header.
 Why do we need this instead of usual cpp file?
-Templates are not compiled into actual code until theyre instantiatedwith a concrete type. That means the compiler has to see the full definition of the template in every translation unit that uses it. (This is ofcourse not the case when lets say we make a unit of main.cpp and we include the header, but then we cannot see the full template definition yet, only when the matching cpp file from hpp file gets linked.)
-So tpp solves this. It is included in the header and treaded also as one single header. We only have two different files for the human readability.
+Templates are not compiled into actual code until theyre instantiated with a concrete type. That means the compiler has to see the full definition of the template in every translation unit that uses it. (This is ofcourse not the case when lets say we make a unit of main.cpp and we include the header, but then we cannot see the full template definition yet, only when the matching cpp file from hpp file gets linked.)
+So tpp solves this. It is included in the header and any tpp file from the same header will be included in the same translation unit.
 
 CONTAINERS
 
@@ -125,3 +125,22 @@ When dereferencing it you get the reference of the value its pointing at.
 begin() = returns iter to begin of container
 end() = return iter to element just after last of container, returning arr+N, cont.end()
 
+LAMDAS
+A lambda function is a way to define a small, unnamed function right at the spot where u need it, instead of having to write a seperate function with function name and body.
+It consists of:
+[capture] (parameters) { code };
+capture = what variables from the surrounding scope the lambda is allowed to use inside its body. Empty meaning nothing, only what's passed as parameters.
+parameters = exactly like a normal functions parameters.
+code = the code that runs when the lambda is called.
+When a lambda is created, even though it's inside another funciton, it only has access to what is specifically passed, wether as parameter or capture.
+
+LAMBDA X FOR_EACH
+Normally we would be able to have a lambda function like this:
+[](Span* this, int n) {this->addNumber(n); }
+We need the this object because the function we wanna apply and what we wanna apply it to are both in the scope of an object.
+Now the for_each function takes a beginning of a range, an end and a function. Inside the for each function it will loop using the current iteration and pass it as an argument to the function. Meaning, whatever function we call must only have one parameter. Our previous lambda function thus doesn't work.
+This does:
+[this](int n) {addNumber(n); }
+The reason we even need this is because let's say we don't call with lambda but with this->addNumber (because for_each needs an object to be able to call addNumber). It's not gonna work. For_each calls f(*first), it doesnt know to call this->f and i'm not even sure it can.
+
+STD::STACK

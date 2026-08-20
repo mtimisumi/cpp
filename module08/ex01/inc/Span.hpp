@@ -37,5 +37,4 @@ class Span
 		{
 			const char* what() const noexcept override;
 		};
-
 };
