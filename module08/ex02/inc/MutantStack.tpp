@@ -22,8 +22,12 @@ MutantStack::~MutantStack()
 
 template<typename T>
 iterator MutantStack::begin()
-{}
+{
+	return c.begin();
+}
 
 template<typename T>
 iterator MutantStack::end()
-{}
+{
+	return c.end();
+}

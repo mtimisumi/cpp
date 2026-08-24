@@ -144,3 +144,13 @@ This does:
 The reason we even need this is because let's say we don't call with lambda but with this->addNumber (because for_each needs an object to be able to call addNumber). It's not gonna work. For_each calls f(*first), it doesnt know to call this->f and i'm not even sure it can.
 
 STD::STACK
+A stack is a container LIFO(last in first out). So anything inserted goes on top of what's already there. And we only have access to the top of the stack. 
+A Stack uses a protected c object which is a std::deque. std::deque has alot more options but stack only gives u access to a limited amount, because a stack is more limited than a deque.
+
+ITERATOR INSIDE CONTAINERS
+The whole point of iterators is to represent a position inside (in this case) a container. Usually they are public nested types inside the container. Meaning we can call upon them and access the (maybe) private data in that container class. 
+
+ITERATOR IN MUTANTSTACK
+MutantStack inherits from stack so it has all the stack's function. Including the protected deque. We make public member functions that can access this deque. Let's say the begin and end iterators. Ofcourse we must store this inside a std::deque::iterator. But then, because we accessed an iteratble object, and the iterator function are also public member function, from there on we can make use of the iterator class function. Increment it, whatever.
+We use the typedefine for easier readability, that way outside the class we created our own "MutantStack::iterator". Obviously it's just a deque iterator but its a lot more readable like this. We can see this typedefine btw because its public, and accessed through the class (MutantStack::);
+
