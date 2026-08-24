@@ -1,15 +1,15 @@
 #include "MutantStack.hpp"
 
 template<typename T>
-MutantStack::MutantStack()
+MutantStack<T>::MutantStack()
 {}
 
 template<typename T>
-MutantStack::MutantStack(const MutantStack& other) : std::stack<T>(other)
+MutantStack<T>::MutantStack(const MutantStack& other) : std::stack<T>(other)
 {}
 
 template<typename T>
-MutantStack& MutantStack::operator=(const MutantStack& other)
+MutantStack<T>& MutantStack<T>::operator=(const MutantStack& other)
 {
 	if (this != &other)
 		std::stack<T>::operator=(other);
@@ -17,17 +17,17 @@ MutantStack& MutantStack::operator=(const MutantStack& other)
 }
 
 template<typename T>
-MutantStack::~MutantStack()
+MutantStack<T>::~MutantStack()
 {}
 
 template<typename T>
-iterator MutantStack::begin()
+typename MutantStack<T>::iterator MutantStack<T>::begin()
 {
-	return c.begin();
+	return std::stack<T>::c.begin();
 }
 
 template<typename T>
-iterator MutantStack::end()
+typename MutantStack<T>::iterator MutantStack<T>::end()
 {
-	return c.end();
+	return std::stack<T>::c.end();
 }
