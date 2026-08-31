@@ -1,5 +1,6 @@
 #include "RPN.hpp"
 #include <cctype>
+#include <string>
 
 std::vector<char> tokenize(const std::string& s)
 {
