@@ -24,29 +24,35 @@ long RPN::getResult() const
 	return _result;
 }
 
-void RPN::calculate(const std::vector<char>& v)
+void RPN::calculate(const std::string& s)
 {
-	std::stack<long> s;
+	std::stack<long> stack;
 
-	for (char c : v)
+	for (char c : s)
 	{
+		if (c == ' ')
+			continue ;
+
 		if (std::isdigit(c))
-			s.push(c - '0');
+			stack.push(c - '0');
 
 		else if (isoperator(c))
-			solvePart(s, c);
+			solvePart(stack, c);
+
+		else
+			throw std::runtime_error("");
 	}
 
-	if (s.size() > 1)
-		throw(std::runtime_error("Remaining numbers after solving"));
+	if (stack.size() > 1)
+		throw std::runtime_error("");
 
-	_result = s.top();
+	_result = stack.top();
 }
 
 void RPN::solvePart(std::stack<long>& s, char sign)
 {
 	if (s.size() < 2)
-		throw(std::runtime_error("Not enough numbers for solving"));
+		throw std::runtime_error("");
 
 	long b = s.top();
 	s.pop();

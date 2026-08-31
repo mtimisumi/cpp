@@ -3,7 +3,6 @@
 #include <iostream>
 #include <exception>
 #include <stack>
-#include <vector>
 
 class RPN
 {
@@ -17,7 +16,7 @@ class RPN
 		~RPN();
 
 		long getResult() const;
-		void calculate(const std::vector<char>& v);
+		void calculate(const std::string& s);
 
 	private:
 		void solvePart(std::stack<long>& s, char sign);
