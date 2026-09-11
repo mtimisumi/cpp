@@ -80,11 +80,11 @@ std::vector<element> getBiggestFromElements(const std::vector<element>& elements
 		biggest = elements[biggest_i];
 		biggest.pair_index = smallest_i;
 		biggest.prev = &(elements[biggest_i]);
-		printElement(biggest);
+		// printElement(biggest);
 
 		biggestFromElements.push_back(biggest);
 	}
-	std::cout << "------------\n";
+	// std::cout << "------------\n";
 
 	return biggestFromElements;
 }
@@ -96,10 +96,12 @@ void printValue(const std::vector<element>& ew)
 	std::cout << "\n\n";
 }
 
+int index = 1;
 
 std::vector<element> mergeInsertionSort(const std::vector<element>& elements)
 {
-	std::cout << "elements: \n";
+	std::cout << "elements " << index << ":\n";
+	index++;
 	for (element e : elements)
 	{
 		std::cout << e.value << " ";
@@ -111,12 +113,10 @@ std::vector<element> mergeInsertionSort(const std::vector<element>& elements)
 		std::vector<element> toReturn = elements;
 		if (toReturn.size() < 2)
 		{
-			std::cout << "------------\n";
 			return toReturn;
 		}
 		if (toReturn[0] > toReturn[1])
 			std::swap(toReturn[0], toReturn[1]);
-		std::cout << "------------\n";
 		return toReturn;
 	}
 	std::vector<element> biggestFromElements = getBiggestFromElements(elements);
