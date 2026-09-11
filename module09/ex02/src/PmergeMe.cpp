@@ -28,22 +28,28 @@ size_t PmergeMe::getSizeDeq() const
 	return _deq.size();
 }
 
-s PmergeMe::getVec(int index) const
+void PmergeMe::FordJohnsonVector()
+{
+	mergeInsertionSort(_vec);
+}
+
+element PmergeMe::getVec(int index) const
 {
 	return _vec[index];
 }
 
-s PmergeMe::getDeq(int index) const
+element PmergeMe::getDeq(int index) const
 {
 	return _deq[index];
 }
 
-bool s::operator>(const s& other) const
+bool element::operator>(const element& other) const
 {
 	return value > other.value;
 }
 
-bool s::operator<(const s& other) const
+bool element::operator<(const element& other) const
 {
 	return value < other.value;
 }
+

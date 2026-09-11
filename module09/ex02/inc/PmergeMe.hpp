@@ -3,23 +3,30 @@
 #include <vector>
 #include <deque>
 
-struct s
+struct pair
+{
+	int my_index;
+	int pair_index;
+};
+
+struct element
 {
 	int value;
-	int index;
-	int pair_index;
+	pair prev;
+	pair curr;
 
-	bool operator>(const s& other) const;
-	bool operator<(const s& other) const;
+	bool operator>(const element& other) const;
+	bool operator<(const element& other) const;
 };
+
 
 
 
 class PmergeMe
 {
 	private:
-		std::vector<s> _vec;
-		std::deque<s> _deq;
+		std::vector<element> _vec;
+		std::deque<element> _deq;
 
 	public:
 		PmergeMe();
@@ -30,7 +37,11 @@ class PmergeMe
 		void addNumber(int value, int index);
 		size_t getSizeVec() const;
 		size_t getSizeDeq() const;
-		s getVec(int index) const;
-		s getDeq(int index) const;
+		element getVec(int index) const;
+		element getDeq(int index) const;
+
+		void FordJohnsonVector();
 
 };
+
+std::vector<element> mergeInsertionSort(const std::vector<element>& elements);
