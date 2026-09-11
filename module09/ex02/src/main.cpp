@@ -30,15 +30,19 @@ void parseArguments(PmergeMe& p, int argc, char *argv[])
 
 void insertElement(std::vector<element>& insertToSorted, element toInsert)
 {
-	for (size_t i = 0; i < insertToSorted.size(); i++)
-	{
-		if (toInsert.value <= insertToSorted[i].value)
-		{
-			insertToSorted.insert(insertToSorted.begin() + 1, toInsert);
-			return ;
-		}
-	}
+    for (size_t i = 0; i < insertToSorted.size(); i++)
+    {
+        if (toInsert.value < insertToSorted[i].value)
+        {
+            insertToSorted.insert(insertToSorted.begin() + i, toInsert);
+            return;
+        }
+    }
+
+    insertToSorted.push_back(toInsert);
 }
+
+
 
 void printBiggestFromElements(const std::vector<element>& getBiggestFromElements)
 {
@@ -68,11 +72,8 @@ std::vector<element> getBiggestFromElements(const std::vector<element>& elements
 	element biggest;
 	size_t biggest_i, smallest_i;
 
-	for (size_t i = 0; i < elements.size(); i+=2)
+	for (size_t i = 0; i < elements.size()-1; i++, i++)
 	{
-		if (i == elements.size())
-			break ;
-
 		biggest_i = elements[i] > elements[i+1] ? i : i+1;
 		smallest_i = elements[i] < elements[i+1] ? i : i+1;
 
@@ -86,6 +87,13 @@ std::vector<element> getBiggestFromElements(const std::vector<element>& elements
 	std::cout << "------------\n";
 
 	return biggestFromElements;
+}
+
+void printValue(const std::vector<element>& ew)
+{
+	for (element e : ew)
+		std::cout << e.value << " ";
+	std::cout << "\n\n";
 }
 
 
@@ -103,11 +111,12 @@ std::vector<element> mergeInsertionSort(const std::vector<element>& elements)
 		std::vector<element> toReturn = elements;
 		if (toReturn.size() < 2)
 		{
-			std::cout << "size is smaller than 2?\n";
+			std::cout << "------------\n";
 			return toReturn;
 		}
 		if (toReturn[0] > toReturn[1])
 			std::swap(toReturn[0], toReturn[1]);
+		std::cout << "------------\n";
 		return toReturn;
 	}
 	std::vector<element> biggestFromElements = getBiggestFromElements(elements);
@@ -115,15 +124,29 @@ std::vector<element> mergeInsertionSort(const std::vector<element>& elements)
 	// printBiggestFromElements(biggestFromElements);
 	const std::vector<element> sorted = mergeInsertionSort(biggestFromElements);
 	std::vector<element> insertToSorted = sorted;
+	std::cout << "sorted\n";
+	printValue(insertToSorted);
 
 	for (element& e : insertToSorted)
 		e = *(e.prev);
+
+	std::cout << "after update\n";
+	printValue(insertToSorted);
+
 
 	for (element e : sorted)
 	{
 		element toInsert = elements[e.pair_index];
 		insertElement(insertToSorted, toInsert);
 	}
+
+	std::cout << "sorted:\n";
+	for (element e : insertToSorted)
+	{
+		std::cout << e.value << " ";
+	}
+	std::cout << "\n\n";
+	std::cout << "------------\n";
 
 	return insertToSorted;
 }

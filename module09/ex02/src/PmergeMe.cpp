@@ -54,6 +54,7 @@ void PmergeMe::FordJohnsonVector()
 		insertElement(insertToSorted, toInsert);
 	}
 
+	std::cout << "final sort:\n";
 	for (element e : insertToSorted)
 	{
 		std::cout << e.value << " ";
