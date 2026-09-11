@@ -2,24 +2,17 @@
 
 #include <vector>
 #include <deque>
-
-struct pair
-{
-	int my_index;
-	int pair_index;
-};
+#include <iostream>
 
 struct element
 {
-	int value;
-	pair prev;
-	pair curr;
+	int				value;
+	int				pair_index;
+	const element*	prev;
 
 	bool operator>(const element& other) const;
 	bool operator<(const element& other) const;
 };
-
-
 
 
 class PmergeMe
@@ -34,7 +27,7 @@ class PmergeMe
 		PmergeMe& operator=(const PmergeMe& other);
 		~PmergeMe();
 
-		void addNumber(int value, int index);
+		void addNumber(int value);
 		size_t getSizeVec() const;
 		size_t getSizeDeq() const;
 		element getVec(int index) const;
@@ -45,3 +38,6 @@ class PmergeMe
 };
 
 std::vector<element> mergeInsertionSort(const std::vector<element>& elements);
+std::vector<element> getBiggestFromElements(const std::vector<element>& elements);
+void insertElement(std::vector<element>& insertToSorted, element toInsert);
+void printBiggestFromElements(const std::vector<element>& getBiggestFromElements);
