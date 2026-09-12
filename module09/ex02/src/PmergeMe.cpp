@@ -35,7 +35,7 @@ size_t PmergeMe::getSizeDeq() const
 
 void PmergeMe::FordJohnsonVector()
 {
-	printValue(_vec);
+	printContainer(_vec);
 
 	element saved;
 	std::vector<element> biggestFromElements = getBiggestFromElements(_vec, saved);
@@ -50,7 +50,7 @@ void PmergeMe::FordJohnsonVector()
 	if (_vec.size() % 2 == 1)
 		insertElement(final, saved);
 
-	printValue(final);
+	printContainer(final);
 }
 
 element PmergeMe::getVec(int index) const
