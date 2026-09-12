@@ -42,22 +42,6 @@ void insertElement(std::vector<element>& insertToSorted, element toInsert)
     insertToSorted.push_back(toInsert);
 }
 
-
-
-void printBiggestFromElements(const std::vector<element>& getBiggestFromElements)
-{
-	std::cout << "biggestFromElements:\n";
-	for (element e : getBiggestFromElements)
-		std::cout << e.value << " ";
-	std::cout << "\npair position:\n";
-	for (element e : getBiggestFromElements)
-		std::cout << e.pair_index << " ";
-	std::cout << "\nprevious element:\n";
-	for (element e : getBiggestFromElements)
-		std::cout << e.prev->value << " ";
-	std::cout << "\n\n";
-}
-
 void printElement(const element& e)
 {
 	std::cout << "new value:" << e.value << "\n";
@@ -66,25 +50,29 @@ void printElement(const element& e)
 	std::cout << "og pair  :" << e.prev->pair_index << "\n\n";
 }
 
-std::vector<element> getBiggestFromElements(const std::vector<element>& elements)
+std::vector<element> getBiggestFromElements(const std::vector<element>& elements, element& saved)
 {
 	std::vector<element> biggestFromElements;
 	element biggest;
 	size_t biggest_i, smallest_i;
 
-	for (size_t i = 0; i < elements.size()-1; i++, i++)
+	for (size_t i = 0; i < elements.size(); i++, i++)
 	{
+		if (i == elements.size()-1)
+		{
+			saved = elements[i];
+			break ;
+		}
+
 		biggest_i = elements[i] > elements[i+1] ? i : i+1;
 		smallest_i = elements[i] < elements[i+1] ? i : i+1;
 
 		biggest = elements[biggest_i];
 		biggest.pair_index = smallest_i;
 		biggest.prev = &(elements[biggest_i]);
-		// printElement(biggest);
 
 		biggestFromElements.push_back(biggest);
 	}
-	// std::cout << "------------\n";
 
 	return biggestFromElements;
 }
@@ -93,60 +81,40 @@ void printValue(const std::vector<element>& ew)
 {
 	for (element e : ew)
 		std::cout << e.value << " ";
-	std::cout << "\n\n";
+	std::cout << "\n";
 }
 
-int index = 1;
-
-std::vector<element> mergeInsertionSort(const std::vector<element>& elements)
+bool startSorting(std::vector<element>& elements)
 {
-	std::cout << "elements " << index << ":\n";
-	index++;
-	for (element e : elements)
-	{
-		std::cout << e.value << " ";
-	}
-	std::cout << "\n\n";
+	if (elements.size() > 2)
+		return false;
 
-	if (elements.size() <= 2)
-	{
-		std::vector<element> toReturn = elements;
-		if (toReturn.size() < 2)
-		{
-			return toReturn;
-		}
-		if (toReturn[0] > toReturn[1])
-			std::swap(toReturn[0], toReturn[1]);
-		return toReturn;
-	}
-	std::vector<element> biggestFromElements = getBiggestFromElements(elements);
-	// printing...
-	// printBiggestFromElements(biggestFromElements);
+	if (elements.size() == 2 && elements[0] > elements[1])
+		std::swap(elements[0], elements[1]);
+
+	return true;
+}
+
+std::vector<element> mergeInsertionSort(std::vector<element>& elements)
+{
+	if (startSorting(elements) == true)
+		return elements;
+
+	element saved;
+	std::vector<element> biggestFromElements = getBiggestFromElements(elements, saved);
 	const std::vector<element> sorted = mergeInsertionSort(biggestFromElements);
 	std::vector<element> insertToSorted = sorted;
-	std::cout << "sorted\n";
-	printValue(insertToSorted);
 
 	for (element& e : insertToSorted)
 		e = *(e.prev);
-
-	std::cout << "after update\n";
-	printValue(insertToSorted);
-
 
 	for (element e : sorted)
 	{
 		element toInsert = elements[e.pair_index];
 		insertElement(insertToSorted, toInsert);
 	}
-
-	std::cout << "sorted:\n";
-	for (element e : insertToSorted)
-	{
-		std::cout << e.value << " ";
-	}
-	std::cout << "\n\n";
-	std::cout << "------------\n";
+	if (elements.size() % 2 == 1)
+		insertElement(insertToSorted, saved);
 
 	return insertToSorted;
 }

@@ -35,16 +35,8 @@ size_t PmergeMe::getSizeDeq() const
 
 void PmergeMe::FordJohnsonVector()
 {
-	std::cout << "original: \n";
-	for (element e : _vec)
-	{
-		std::cout << e.value << " ";
-	}
-	std::cout << "\n\n";
-
-	std::vector<element> biggestFromElements = getBiggestFromElements(_vec);
-	// printing...
-	// printBiggestFromElements(biggestFromElements);
+	element saved;
+	std::vector<element> biggestFromElements = getBiggestFromElements(_vec, saved);
 	const std::vector<element> sorted = mergeInsertionSort(biggestFromElements);
 	std::vector<element> insertToSorted = sorted;
 
@@ -53,13 +45,10 @@ void PmergeMe::FordJohnsonVector()
 		element toInsert = _vec[e.pair_index];
 		insertElement(insertToSorted, toInsert);
 	}
+	if (_vec.size() % 2 == 1)
+		insertElement(insertToSorted, saved);
 
-	std::cout << "final sort:\n";
-	for (element e : insertToSorted)
-	{
-		std::cout << e.value << " ";
-	}
-	std::cout << "\n";
+	printValue(insertToSorted);
 }
 
 element PmergeMe::getVec(int index) const

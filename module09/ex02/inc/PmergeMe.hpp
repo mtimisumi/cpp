@@ -3,6 +3,7 @@
 #include <vector>
 #include <deque>
 #include <iostream>
+#include <iterator>
 
 struct element
 {
@@ -37,7 +38,8 @@ class PmergeMe
 
 };
 
-std::vector<element> mergeInsertionSort(const std::vector<element>& elements);
-std::vector<element> getBiggestFromElements(const std::vector<element>& elements);
+std::vector<element> mergeInsertionSort(std::vector<element>& elements);
+std::vector<element> getBiggestFromElements(const std::vector<element>& elements, element& saved);
 void insertElement(std::vector<element>& insertToSorted, element toInsert);
-void printBiggestFromElements(const std::vector<element>& getBiggestFromElements);
+
+void printValue(const std::vector<element>& ew);
