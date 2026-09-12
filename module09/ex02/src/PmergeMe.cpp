@@ -33,10 +33,16 @@ size_t PmergeMe::getSizeDeq() const
 	return _deq.size();
 }
 
+void PmergeMe::FordJohnson()
+{
+	printContainer(_vec, "unsorted range of numbers");
+
+	FordJohnsonVector();
+	FordJohnsonDeque();
+}
+
 void PmergeMe::FordJohnsonVector()
 {
-	printContainer(_vec);
-
 	element saved;
 	std::vector<element> biggestFromElements = getBiggestFromElements(_vec, saved);
 	const std::vector<element> sorted = mergeInsertionSort(biggestFromElements);
@@ -50,7 +56,25 @@ void PmergeMe::FordJohnsonVector()
 	if (_vec.size() % 2 == 1)
 		insertElement(final, saved);
 
-	printContainer(final);
+	printContainer(final, "sorted numbers using vector");
+}
+
+void PmergeMe::FordJohnsonDeque()
+{
+	element saved;
+	std::deque<element> biggestFromElements = getBiggestFromElements(_deq, saved);
+	const std::deque<element> sorted = mergeInsertionSort(biggestFromElements);
+	std::deque<element> final = sorted;
+
+	for (element e : sorted)
+	{
+		element toInsert = _deq[e.pair_index];
+		insertElement(final, toInsert);
+	}
+	if (_vec.size() % 2 == 1)
+		insertElement(final, saved);
+
+	printContainer(final, "sorted numbers using deque");	
 }
 
 element PmergeMe::getVec(int index) const

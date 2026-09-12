@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 	try
 	{
 		parseArguments(p, argc-1, ++argv);
-		p.FordJohnsonVector();
+		p.FordJohnson();
 	}
 	catch(const std::exception& e)
 	{

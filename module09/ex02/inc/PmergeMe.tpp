@@ -69,11 +69,12 @@ void insertElement(Container& insertToSorted, element toInsert)
 }
 
 template<typename Container>
-void printContainer(Container& c)
+void printContainer(Container& c, const std::string& msg)
 {
+	std::cout << "Printing " << msg << ":\n";
 	for (element e : c)
 		std::cout << e.value << " ";
-	std::cout << "\n";
+	std::cout << "\n\n";
 }
 
 template<typename Container>
