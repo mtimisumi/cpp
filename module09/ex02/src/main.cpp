@@ -29,11 +29,6 @@ void parseArguments(PmergeMe& p, int argc, char *argv[])
 }
 
 
-// void sortDeque(PmergeMe& p)
-// {}
-
-
-
 int main(int argc, char *argv[])
 {
 	if (argc < 2) {

@@ -41,7 +41,7 @@ Container getBiggestFromElements(const Container& elements, element& saved)
 		}
 
 		biggest_i = elements[i] > elements[i+1] ? i : i+1;
-		smallest_i = elements[i] < elements[i+1] ? i : i+1;
+		smallest_i = elements[i] <= elements[i+1] ? i : i+1;
 
 		biggest = elements[biggest_i];
 		biggest.pair_index = smallest_i;

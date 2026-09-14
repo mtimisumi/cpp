@@ -92,8 +92,8 @@ bool element::operator>(const element& other) const
 	return value > other.value;
 }
 
-bool element::operator<(const element& other) const
+bool element::operator<=(const element& other) const
 {
-	return value < other.value;
+	return value <= other.value;
 }
 

@@ -12,7 +12,7 @@ struct element
 	const element*	prev;
 
 	bool operator>(const element& other) const;
-	bool operator<(const element& other) const;
+	bool operator<=(const element& other) const;
 };
 
 
