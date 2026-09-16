@@ -7,9 +7,10 @@
 
 struct element
 {
-	int				value;
-	int				pair_index;
-	const element*	prev;
+	int			value;
+	// int				pair_index;
+	element*	pair;
+	element*	prev;
 
 	bool operator>(const element& other) const;
 	bool operator<=(const element& other) const;
@@ -21,6 +22,12 @@ class PmergeMe
 	private:
 		std::vector<element> _vec;
 		std::deque<element> _deq;
+
+		double _vecUs;
+		double _deqUs;
+
+		int _vecComp;
+		int _deqComp;
 
 	public:
 		PmergeMe();
@@ -42,10 +49,11 @@ class PmergeMe
 
 };
 
+template<typename Container> void JacobsthalOrderSort(Container& c);
 template<typename Container> Container mergeInsertionSort(Container& elements);
 template<typename Container> Container getBiggestFromElements(const Container& elements, element& saved);
 template<typename Container> void insertElement(Container& insertToSorted, element toInsert);
-template<typename Container> void printContainer(Container& c, const std::string& msg);
 template<typename Container> bool startSorting(Container& elements);
+template<typename Container> void printContainer(Container& c);
 
 #include "PmergeMe.tpp"

@@ -3,14 +3,19 @@
 PmergeMe::PmergeMe()
 {}
 
-PmergeMe::PmergeMe(const PmergeMe& other) : _vec(other._vec), _deq(other._deq)
+PmergeMe::PmergeMe(const PmergeMe& other)
+: _vec(other._vec), _deq(other._deq), _vecUs(other._vecUs), _deqUs(other._deqUs)
 {}
 
 PmergeMe& PmergeMe::operator=(const PmergeMe& other)
 {
 	if (this != &other)
+	{
 		_vec = other._vec;
-
+		_deq = other._deq;
+		_vecUs = other._vecUs;
+		_deqUs = other._deqUs;
+	}
 	return *this;
 }
 
@@ -35,7 +40,7 @@ size_t PmergeMe::getSizeDeq() const
 
 void PmergeMe::FordJohnson()
 {
-	printContainer(_vec, "unsorted range of numbers");
+	// printContainer(_vec, "unsorted range of numbers");
 
 	FordJohnsonVector();
 	FordJohnsonDeque();
@@ -56,7 +61,7 @@ void PmergeMe::FordJohnsonVector()
 	if (_vec.size() % 2 == 1)
 		insertElement(final, saved);
 
-	printContainer(final, "sorted numbers using vector");
+	// printContainer(final, "sorted numbers using vector");
 }
 
 void PmergeMe::FordJohnsonDeque()
@@ -74,7 +79,7 @@ void PmergeMe::FordJohnsonDeque()
 	if (_vec.size() % 2 == 1)
 		insertElement(final, saved);
 
-	printContainer(final, "sorted numbers using deque");	
+	// printContainer(final, "sorted numbers using deque");
 }
 
 element PmergeMe::getVec(int index) const
