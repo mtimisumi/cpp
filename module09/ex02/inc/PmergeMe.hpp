@@ -8,9 +8,9 @@
 
 struct element
 {
-	int				value;
-	const element*	pair;
-	const element*	prev;
+	int			value;
+	element*	pair;
+	element*	prev;
 
 	bool operator>(const element& other) const;
 	bool operator<=(const element& other) const;
@@ -31,16 +31,11 @@ class PmergeMe
 		~PmergeMe();
 
 		void addNumber(int value);
-		size_t getSizeVec() const;
-		size_t getSizeDeq() const;
-		element getVec(int index) const;
-		element getDeq(int index) const;
-
 		void FordJohnson();
 };
 
 template<typename Container> void binaryInsert(Container& c, element& e, int index);
-template<typename Container> Container JacobsthalSort(const Container& example, element& saved);
+template<typename Container> Container JacobSthalSort(const Container& example, element& saved);
 template<typename Container> Container mergeInsertionSort(Container& elements);
 template<typename Container> Container getBiggestFromElements(const Container& elements, element& saved);
 template<typename Container> bool startSorting(Container& elements);

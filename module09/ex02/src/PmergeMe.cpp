@@ -25,15 +25,6 @@ void PmergeMe::addNumber(int value)
 	_deq.push_back({value, NULL, NULL});
 }
 
-size_t PmergeMe::getSizeVec() const
-{
-	return _vec.size();
-}
-
-size_t PmergeMe::getSizeDeq() const
-{
-	return _deq.size();
-}
 
 void PmergeMe::FordJohnson()
 {
@@ -44,16 +35,6 @@ void PmergeMe::FordJohnson()
 
 	printContainer(_vec, "sorted vector");
 	printContainer(_deq, "sorted deque");
-}
-
-element PmergeMe::getVec(int index) const
-{
-	return _vec[index];
-}
-
-element PmergeMe::getDeq(int index) const
-{
-	return _deq[index];
 }
 
 bool element::operator>(const element& other) const
