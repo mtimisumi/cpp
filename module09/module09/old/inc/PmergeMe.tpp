@@ -1,75 +1,80 @@
 #include "PmergeMe.hpp"
 
+// template<typename Container> bool insert(Container& c, element& e, int index)
+// {
+// 	int max = c.size()-1;
+// 	if ((index < max && e <= c[index+1]) && (index > 0 && e > c[index-1])
+// 		return true;
+// }
 
 
-// still have to take care of growing index
-template<typename Container> void binaryInsert(Container& c, element& e, int index)
-{
-	int mid = index/2;
+// // still have to take care of growing index
+// template<typename Container> void binaryInsert(Container& c, element& e, int index)
+// {
+// 	int mid = index/2;
 
-	if (e.value > c[mid].value)
-		binaryInsert(c, e, mid+(mid/2));
-	else
-		binaryInsert(c, e, mid-(mid/2));
+// 	while (!insert(c, e, index))
+// 	{
+
+// 	}
+
+// 	if (e.value > c[mid].value)
+// 		mid = binaryInsert(c, e, mid+(mid/2));
+// 	else
+// 		mid = binaryInsert(c, e, mid-(mid/2));
 	
+// }
+
+template<typename Container>
+void binaryInsert(Container& c, element& e, int index)
+{
+	(void)index;
+	for (size_t i = 0; i < c.size(); i++)
+	{
+		if (e < c[i])
+			continue ;
+		c.insert(e, i);
+		break ;
+	}
 }
 
 const int JacobSthal[] = { 0, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461};
 
-template<typename Container> void JacobsthalSort(const Container& example, const Container& elements)
+template<typename Container>
+Container JacobsthalSort(const Container& example, const Container& elements, element& saved)
 {
 	Container c = example;
 	for (element& e : c)
-		c = *(c.prev);
+		e = *(e.prev);
 
 	int index = 0;
+	int jacob = 0;
 	bool done = false;
 	while (!done)
 	{
-		int k = JacobSthal[index];
-		if (k == 0)
-			c.insert(*(elements[0].pair));
-		if (k > c.size()-1)
-		{
-			k = c.size()-1;
-			done = true;
+		int k = JacobSthal[jacob];
+		if (k == 0) {
+			c.insert(*(elements[0].pair), 0);
+			index++;
 		}
-		if (k > 0)
-		{
-			int a = JacobSthal[k-1];
-			for (int i = a; a < k; k--)
-				binaryInsert(c, *(elements[k].pair), index);
+		if (k > 0) {
+			if (k > example.size()-1)
+				k = example.size()-1;
+			if (k == example.size()-1)
+				done = true;
+
+			for (int a = JacobSthal[k-1]; a < k; k--)
+			{
+				binaryInsert(c, *(elements[k].pair), k+index);
+				if (*(elements[k].pair) <= elements[k])
+					index++;
+			}
 		}
-		index++:
+		jacob++;
 	}
-}
 
-
-template<typename Container> void JacobsthalSort(Container& c, const Container& example)
-{
-	int jacob_index = 0;
-	bool done = false;
-
-	while (!done)
-	{
-		int k = JacobSthal[jacob_index];
-		if (k > example.size()-1)
-		{
-			k = example.size()-1;
-			done = true;
-		}
-		if (k == 0)
-			c.insert();
-
-		for (int i = JacobSthal[k-1]; )
-
-
-		for (int i = k-1; i >= 0; i--)
-		{
-			for()
-			binaryInsert(c, i, k);
-		}
-	}
+	if (2%example.size() == 1)
+		binaryInsert(c, saved, example.size()-1);
 }
 
 
@@ -83,21 +88,9 @@ Container mergeInsertionSort(Container& elements)
 	Container biggestFromElements = getBiggestFromElements(elements, saved);
 	const Container sorted = mergeInsertionSort(biggestFromElements);
 
-	Container c = JacobSthalSort(sorted);
+	Container insertToSorted = JacobsthalSort(sorted, elements, saved);
 
-	Container c = sorted;
-
-	for (element& e : c)
-		e = *(e.prev);
-
-	JacobSthalSort();
-
-	JacobsthalOrderSort(c, );
-	// sort();
-	if (elements.size() % 2 == 1)
-		insertElement(c, saved);
-
-	return c;
+	return insertToSorted;
 }
 
 template<typename Container>
@@ -119,7 +112,6 @@ Container getBiggestFromElements(const Container& elements, element& saved)
 		smallest_i = elements[i] <= elements[i+1] ? i : i+1;
 
 		biggest = elements[biggest_i];
-		// biggest.pair_index = smallest_i;
 		biggest.pair = &(elements[smallest_i]);
 		biggest.prev = &(elements[biggest_i]);
 
@@ -157,7 +149,10 @@ bool startSorting(Container& elements)
 }
 
 template<typename Container>
-void printContainer(Container& c)
+void printContainer(Container& c, const std::string& msg)
 {
-
+	std::cout << msg << "\n";
+	for (element e : c)
+		std::cout << e.value << " ";
+	std::cout << "\n\n";
 }

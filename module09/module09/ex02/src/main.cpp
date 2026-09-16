@@ -1,8 +1,5 @@
 #include "PmergeMe.hpp"
-#include <limits>
-#include <string>
 #include <exception>
-#include <utility>
 
 
 void parseArguments(PmergeMe& p, int argc, char *argv[])
