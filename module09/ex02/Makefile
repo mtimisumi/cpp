@@ -1,6 +1,6 @@
 NAME = PmergeMe
 
-CC = c++
+CC = c++ -g
 
 # it is not mandatory for codam students to follow the c++98 rules
 FLAGS = -Wall -Wextra -Werror -Iinc

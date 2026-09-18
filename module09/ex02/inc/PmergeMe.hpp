@@ -37,7 +37,7 @@ class PmergeMe
 template<typename Container> void binaryInsert(Container& c, element& e, int index);
 template<typename Container> Container JacobSthalSort(const Container& example, element& saved);
 template<typename Container> Container mergeInsertionSort(Container& elements);
-template<typename Container> Container getBiggestFromElements(const Container& elements, element& saved);
+template<typename Container> Container getBiggestFromElements(Container& elements, element& saved);
 template<typename Container> bool startSorting(Container& elements);
 template<typename Container> void printContainer(Container& c, const std::string& msg);
 

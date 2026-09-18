@@ -33,6 +33,7 @@ void PmergeMe::FordJohnson()
 	_vec = mergeInsertionSort(_vec);
 	_deq = mergeInsertionSort(_deq);
 
+	// printContainer(_vec, "1");
 	printContainer(_vec, "sorted vector");
 	printContainer(_deq, "sorted deque");
 }
