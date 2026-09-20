@@ -31,11 +31,10 @@ void PmergeMe::FordJohnson()
 	printContainer(_vec, "unsorted numbers");
 
 	_vec = mergeInsertionSort(_vec);
-	_deq = mergeInsertionSort(_deq);
+	// _deq = mergeInsertionSort(_deq);
 
-	// printContainer(_vec, "1");
 	printContainer(_vec, "sorted vector");
-	printContainer(_deq, "sorted deque");
+	// printContainer(_deq, "sorted deque");
 }
 
 bool element::operator>(const element& other) const

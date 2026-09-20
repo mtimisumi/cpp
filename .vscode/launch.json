@@ -8,8 +8,8 @@
 			"type": "lldb",
 			"request": "launch",
 			"name": "Debug",
-			"program": "${workspaceFolder}/module01/ex04/replacer",
-			"args": ["file.txt", "a", "b"],
+			"program": "${workspaceFolder}/module09/ex02/PmergeMe",
+			"args": ["3", "2", "1"],
 			"cwd": "${workspaceFolder}"
 		}
 	]
