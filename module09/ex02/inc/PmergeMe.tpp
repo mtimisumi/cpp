@@ -56,6 +56,7 @@ Container JacobSthalSort(Container& c, element& saved)
 		for (int a = JacobSthal[jacob-1]; a < k; k--)
 		{
 			int target = k+shift-1;
+	
 			element at_index = c.back();
 			if (static_cast<size_t>(target) < c.size())
 				at_index = c[target];
@@ -141,8 +142,8 @@ bool startSorting(Container& elements, element& saved)
 template<typename Container>
 void printContainer(Container& c, const std::string& msg)
 {
-	std::cerr << msg;
+	std::cout << msg;
 	for (element e : c)
-		std::cerr << e.value << " ";
+		std::cout << e.value << " ";
 	std::cout << "\n";
 }
