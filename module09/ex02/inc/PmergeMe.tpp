@@ -16,23 +16,15 @@ void binaryInsert(Container& c, element& e, int index)
 	{
 		size_t mid = low + (high-low)/2;
 
-		// ++comparisons;
-		if (c[mid] > e)
+		if (c[mid] >= e)
 			high = mid;
 		else 
 			low = mid + 1;
+
+		++comparisons;
 	}
 
 	c.insert(c.begin() + low, e);
-}
-
-template<typename Container>
-void printContainer(Container& c, const std::string& msg)
-{
-	std::cerr << msg << ":\n";
-	for (element e : c)
-		std::cerr << e.value << " ";
-	std::cerr << "\n\n";
 }
 
 const int JacobSthal[] = { -1, 0, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461};
@@ -63,7 +55,7 @@ Container JacobSthalSort(Container& c, element& saved)
 		
 		for (int a = JacobSthal[jacob-1]; a < k; k--)
 		{
-			element at_index = {-1, NULL, NULL};
+			element at_index = c.back();
 			if (static_cast<size_t>(k+index) < c.size())
 				at_index = c[k+index];
 			binaryInsert(c, pairsToSort[k], k+index);
@@ -85,7 +77,6 @@ Container mergeInsertionSort(Container& elements)
 	element saved = {-1, NULL, NULL};
 	Container biggestFromElements = getBiggestFromElements(elements, saved);
 	Container sortedBiggest = mergeInsertionSort(biggestFromElements);
-
 	Container sortedAll = JacobSthalSort(sortedBiggest, saved);
 
 	return sortedAll;
@@ -106,13 +97,14 @@ Container getBiggestFromElements(Container& elements, element& saved)
 			break ;
 		}
 
+		++comparisons;
 		biggest_i = elements[i] > elements[i+1] ? i : i+1;
 		smallest_i = elements[i] <= elements[i+1] ? i : i+1;
-
+		
 		biggest = elements[biggest_i];
 		biggest.pair = &(elements[smallest_i]);
 		biggest.prev = &(elements[biggest_i]);
-
+		
 		biggestFromElements.push_back(biggest);
 	}
 
@@ -125,8 +117,19 @@ bool startSorting(Container& elements)
 	if (elements.size() > 2)
 		return false;
 
+	++comparisons;
 	if (elements.size() == 2 && elements[0] > elements[1])
 		std::swap(elements[0], elements[1]);
 
 	return true;
+}
+
+
+template<typename Container>
+void printContainer(Container& c, const std::string& msg)
+{
+	std::cerr << msg;
+	for (element e : c)
+		std::cerr << e.value << " ";
+	std::cout << "\n";
 }

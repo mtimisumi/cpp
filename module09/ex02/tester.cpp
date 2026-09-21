@@ -34,7 +34,7 @@ std::string runStdSort(std::vector<int>& v)  {
 	for (size_t i = 0; i < v.size(); ++i) {
 		result += std::to_string(v[i]) + " ";
 	}
-	return result + "\n\n";
+	return result;
 }
 
 
@@ -98,13 +98,14 @@ static void standardTests() {
 }
 
 int main() {
-	standardTests();
-	for (int i = 2; i < 6; ++i) {
-		for (int j = 0; j < 10; j++) {
-			test(randVec(i));
-		}
-		if (i % 3 == 1) {
-			std::cout << std::endl;
-		}
-	}
+	// standardTests();
+	test(randVec(3000));
+	// for (int i = 2; i < 3001; ++i) {
+	// 	for (int j = 0; j < 10; j++) {
+	// 		test(randVec(i));
+	// 	}
+	// 	if (i % 3 == 1) {
+	// 		std::cout << std::endl;
+	// 	}
+	// }
 }

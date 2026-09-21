@@ -6,6 +6,8 @@
 #include <utility>
 #include <string>
 
+extern int comparisons;
+
 struct element
 {
 	int			value;
@@ -14,6 +16,7 @@ struct element
 
 	bool operator>(const element& other) const;
 	bool operator<=(const element& other) const;
+	bool operator>=(const element& other) const;
 };
 
 
@@ -22,7 +25,6 @@ class PmergeMe
 	private:
 		std::vector<element> _vec;
 		std::deque<element> _deq;
-
 
 	public:
 		PmergeMe();
