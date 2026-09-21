@@ -28,8 +28,6 @@ void PmergeMe::addNumber(int value)
 void PmergeMe::FordJohnson()
 {
 	size_t elementCount = _vec.size();
-	int vecComp;
-	int deqComp;
 
 	printContainer(_vec, "Before:\t");
 
@@ -38,49 +36,17 @@ void PmergeMe::FordJohnson()
 	std::chrono::high_resolution_clock::time_point vEnd = std::chrono::high_resolution_clock::now();
 	double _vecUs = std::chrono::duration<double, std::micro>(vEnd - vStart).count();
 
-	vecComp = comparisons;
-	comparisons = 0;
-
 	std::chrono::high_resolution_clock::time_point dStart = std::chrono::high_resolution_clock::now();
 	_deq = mergeInsertionSort(_deq);
 	std::chrono::high_resolution_clock::time_point dEnd = std::chrono::high_resolution_clock::now();
 	double _deqUs = std::chrono::duration<double, std::micro>(dEnd - dStart).count();
 
-	deqComp = comparisons;
-
 	printContainer(_vec, "After:\t");
 
 	std::cout << "Time to process range of " << elementCount << " elements with std::vector: " << _vecUs << " us\n";
 	std::cout << "Time to process range of " << elementCount << " elements with std::deque: " << _deqUs << " us\n";
-
-	std::cout << "Comparisons for sorting the vector: " << vecComp << "\n";
-	std::cout << "Comparisons for sorting the deque: " << deqComp << "\n";
+	std::cout << "Comparisons: " << comparisons/2 << "\n";
 }
-
-
-// void PmergeMe::FordJohnson()
-// {
-// 	size_t elementCount = _vec.size();
-
-// 	printContainer(_vec, "Before:\t");
-
-// 	int comparisons = 0;
-// 	std::chrono::high_resolution_clock::time_point vStart = std::chrono::high_resolution_clock::now();
-// 	_vec = mergeInsertionSort(_vec);
-// 	std::chrono::high_resolution_clock::time_point vEnd = std::chrono::high_resolution_clock::now();
-// 	double _vecUs = std::chrono::duration<double, std::micro>(vEnd - vStart).count();
-	
-// 	std::chrono::high_resolution_clock::time_point dStart = std::chrono::high_resolution_clock::now();
-// 	_deq = mergeInsertionSort(_deq);
-// 	std::chrono::high_resolution_clock::time_point dEnd = std::chrono::high_resolution_clock::now();
-// 	double _deqUs = std::chrono::duration<double, std::micro>(dEnd - dStart).count();
-
-// 	printContainer(_vec, "After:\t");
-
-// 	std::cout << "Time to process range of " << elementCount << " elements with std::vector: " << _vecUs << " us\n";
-// 	std::cout << "Time to process range of " << elementCount << " elements with std::deque: " << _deqUs << " us\n";
-
-// }
 
 bool element::operator>(const element& other) const
 {

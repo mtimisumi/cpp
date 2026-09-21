@@ -18,7 +18,7 @@ void parseArguments(PmergeMe& p, int argc, char *argv[])
 
 		if (pos != std::string(argv[i]).length())
 			throw std::runtime_error(std::string("argument given is invalid: ") + argv[i]);
-		if (value < 0) 
+		if (value < 1) 
 			throw std::runtime_error(std::string("argument given is not positive: ") + argv[i]);
 
 		p.addNumber(value);

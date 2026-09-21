@@ -3,7 +3,7 @@
 template<typename Container>
 void binaryInsert(Container& c, element& e, int index)
 {
-	if (index == 0)
+	if (index == 1)
 	{
 		c.insert(c.begin(), e);
 		return ;
@@ -27,7 +27,7 @@ void binaryInsert(Container& c, element& e, int index)
 	c.insert(c.begin() + low, e);
 }
 
-const int JacobSthal[] = { -1, 0, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461};
+const int JacobSthal[] = { 0, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461};
 
 template<typename Container>
 Container JacobSthalSort(Container& c, element& saved)
@@ -41,26 +41,28 @@ Container JacobSthalSort(Container& c, element& saved)
 	for (element& e : c)
 		e = *(e.prev);
 
-	int index = 0;
 	int jacob = 1;
+	int shift = 0;
 	bool done = false;
 	while (!done)
 	{
 		int k = JacobSthal[jacob];
 
-		if (static_cast<size_t>(k) > pairsToSort.size()-1)
-			k = pairsToSort.size()-1;
-		if (static_cast<size_t>(k) == pairsToSort.size()-1)
+		if (static_cast<size_t>(k) > pairsToSort.size())
+			k = pairsToSort.size();
+		if (static_cast<size_t>(k) == pairsToSort.size())
 			done = true;
-		
+
 		for (int a = JacobSthal[jacob-1]; a < k; k--)
 		{
+			int target = k+shift-1;
 			element at_index = c.back();
-			if (static_cast<size_t>(k+index) < c.size())
-				at_index = c[k+index];
-			binaryInsert(c, pairsToSort[k], k+index);
-			if (pairsToSort[k] <= at_index)
-				index++;
+			if (static_cast<size_t>(target) < c.size())
+				at_index = c[target];
+
+			binaryInsert(c, pairsToSort[k-1], target);
+			if (pairsToSort[k-1] <= at_index)
+				shift++;
 		}
 		jacob++;
 	}
@@ -71,10 +73,11 @@ Container JacobSthalSort(Container& c, element& saved)
 template<typename Container>
 Container mergeInsertionSort(Container& elements)
 {
-	if (startSorting(elements))
+	element saved = {-1, NULL, NULL};
+
+	if (startSorting(elements, saved))
 		return elements;
 
-	element saved = {-1, NULL, NULL};
 	Container biggestFromElements = getBiggestFromElements(elements, saved);
 	Container sortedBiggest = mergeInsertionSort(biggestFromElements);
 	Container sortedAll = JacobSthalSort(sortedBiggest, saved);
@@ -112,14 +115,24 @@ Container getBiggestFromElements(Container& elements, element& saved)
 }
 
 template<typename Container>
-bool startSorting(Container& elements)
+bool startSorting(Container& elements, element& saved)
 {
-	if (elements.size() > 2)
+	if (elements.size() > 3)
 		return false;
 
+	if (elements.size() == 1)
+		return true;
+
 	++comparisons;
-	if (elements.size() == 2 && elements[0] > elements[1])
+	if (elements[0] > elements[1])
 		std::swap(elements[0], elements[1]);
+
+	if (elements.size() == 3)
+	{
+		saved = elements.back();
+		elements.pop_back();
+		binaryInsert(elements, saved, 2);
+	}
 
 	return true;
 }
