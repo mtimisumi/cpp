@@ -1,20 +1,20 @@
 #include "PmergeMe.hpp"
 
 template<typename Container>
-void binaryInsert(Container& c, element& e, int index)
+int binaryInsert(Container& c, element& e, int index)
 {
 	if (index == 0)
 	{
 		c.insert(c.begin(), e);
-		return ;
+		return 0;
 	}
 
-	size_t low = 0;
-	size_t high = index;
+	int low = 0;
+	int high = index;
 
 	while (low < high)
 	{
-		size_t mid = low + (high-low)/2;
+		int mid = low + (high-low)/2;
 
 		if (c[mid] >= e)
 			high = mid;
@@ -25,6 +25,8 @@ void binaryInsert(Container& c, element& e, int index)
 	}
 
 	c.insert(c.begin() + low, e);
+
+	return low;
 }
 
 const int JacobSthal[] = { 0, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461};
@@ -41,8 +43,11 @@ Container JacobSthalSort(Container& c, element& saved)
 	for (element& e : c)
 		e = *(e.prev);
 
+	std::vector<int> cIndex;
+	for (size_t i = 0; i < pairsToSort.size(); i++)
+		cIndex.push_back(i);
+
 	int jacob = 1;
-	int shift = 0;
 	bool done = false;
 	while (!done)
 	{
@@ -53,22 +58,33 @@ Container JacobSthalSort(Container& c, element& saved)
 		if (static_cast<size_t>(k) == pairsToSort.size())
 			done = true;
 
-		int index = k-1+shift;
-		for (int a = JacobSthal[jacob-1]; a < k; k--)
+		for (int a = JacobSthal[jacob-1], i = k-1; a < k; k--, i--)
 		{
-			element next_element = c.back();
-			if (index-1 > a-1)
-				next_element = c[index-1];
-			binaryInsert(c, pairsToSort[k-1], index);
-			if (pairsToSort[k-1] <= next_element)
-				index++;
+			element pair = pairsToSort[i];
+			element next = c.back();
+			if (i-1 > a-1)
+				next = c[i-1];
 
-			shift++;
+			int pairIndex = binaryInsert(c, pair, cIndex[i]);
+
+			updateCIndex(cIndex, pairIndex);
 		}
 		jacob++;
 	}
 
 	return c;
+}
+
+template<typename IndexContainer>
+void updateCIndex(IndexContainer& cIndex, int pairIndex)
+{
+	for (size_t i = 0; i < cIndex.size(); i++)
+	{
+		if (cIndex[i] < pairIndex)
+			continue ;
+
+		cIndex[i]++;
+	}
 }
 
 template<typename Container>
@@ -108,7 +124,7 @@ Container getBiggestFromElements(Container& elements, element& saved)
 		biggest = elements[biggest_i];
 		biggest.pair = &(elements[smallest_i]);
 		biggest.prev = &(elements[biggest_i]);
-		
+
 		biggestFromElements.push_back(biggest);
 	}
 
@@ -138,12 +154,41 @@ bool startSorting(Container& elements, element& saved)
 	return true;
 }
 
-
 template<typename Container>
 void printContainer(Container& c, const std::string& msg)
 {
 	std::cout << msg;
-	for (element e : c)
-		std::cout << e.value << " ";
+
+	for (size_t i = 0; i < 10; i++)
+	{
+		if (i == c.size())
+			break ;
+
+		std::cout << c[i] << " ";
+	}
+
+	if (c.size() > 10)
+		std::cout << "[...]";
+
 	std::cout << "\n";
+}
+
+
+
+template<typename Container>
+bool isSorted(Container& c)
+{
+	if (c.size() < 2)
+		return true;
+
+	std::vector<element>::iterator it = c.begin();
+	std::vector<element>::iterator next = std::next(it);
+
+	for (; next != c.end(); it++, next++)
+	{
+		if (*it > *next)
+			return false;
+	}
+
+	return true;
 }
