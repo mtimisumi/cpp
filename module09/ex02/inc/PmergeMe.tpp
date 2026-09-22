@@ -41,19 +41,12 @@ Container JacobSthalSort(Container& c, element& saved)
 	for (element& e : c)
 		e = *(e.prev);
 
-	// printContainer(pairsToSort, "pairs to sort:\n");
-	// printContainer(c, "winners:\n");
-
 	int jacob = 1;
 	int shift = 0;
 	bool done = false;
 	while (!done)
 	{
-		// get k index according to jacob
 		int k = JacobSthal[jacob];
-
-		// std::cout << "k: " << k << "\n";
-		// std::cout << "pairsToSort size: " << pairsToSort.size() << "\n";
 
 		if (static_cast<size_t>(k) > pairsToSort.size())
 			k = pairsToSort.size();
@@ -63,34 +56,17 @@ Container JacobSthalSort(Container& c, element& saved)
 		int index = k-1+shift;
 		for (int a = JacobSthal[jacob-1]; a < k; k--)
 		{
-			// std::cout << "\nk : " << k << "\n";
-			// std::cout << "shift: " << shift << "\n";
-			// std::cout << "index: " << index << "\n";
-			// std::cout << "a: " << a << "\n";
-
-			// element cur_element = c[index];
-			element to_insert = pairsToSort[k-1];
 			element next_element = c.back();
 			if (index-1 > a-1)
 				next_element = c[index-1];
-
-			// std::cout << "cur_element: " << cur_element.value << "\n";
-			// std::cout << "to_insert: " << to_insert.value << "\n";
-			// std::cout << "next_element: " << next_element.value << "\n";
-
-			binaryInsert(c, to_insert, index);
-
-			if (to_insert <= next_element)
+			binaryInsert(c, pairsToSort[k-1], index);
+			if (pairsToSort[k-1] <= next_element)
 				index++;
 
 			shift++;
-
-			// printContainer(c, "c after sort:\n");
 		}
 		jacob++;
 	}
-
-	// printContainer(c, "c after sorting all:\n");
 
 	return c;
 }
@@ -104,11 +80,8 @@ Container mergeInsertionSort(Container& elements)
 		return elements;
 
 	Container biggestFromElements = getBiggestFromElements(elements, saved);
-	// printContainer(biggestFromElements, "biggest of pairs:\n");
 	Container sortedBiggest = mergeInsertionSort(biggestFromElements);
-	// printContainer(sortedBiggest, "sorted biggest:\n");
 	Container sortedAll = JacobSthalSort(sortedBiggest, saved);
-	// printContainer(sortedAll, "sorted all:\n");
 
 	return sortedAll;
 }

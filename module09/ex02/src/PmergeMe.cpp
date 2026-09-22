@@ -29,8 +29,7 @@ void PmergeMe::FordJohnson()
 {
 	// printContainer(_vec, "unsorted elements:\n");
 	_vec = mergeInsertionSort(_vec);
-	// std::cout << comparisons << "\n";
-	std::cout << "0\n";
+	std::cout << comparisons << "\n";
 	for (element e : _vec)
 		std::cout << e.value << " ";
 
