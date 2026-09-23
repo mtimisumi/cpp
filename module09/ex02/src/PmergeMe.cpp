@@ -14,6 +14,7 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other)
 		_vec = other._vec;
 		_deq = other._deq;
 	}
+
 	return *this;
 }
 
@@ -77,7 +78,6 @@ std::ostream& operator<<(std::ostream& os, const element& e)
 {
 	return os << e.value;
 }
-
 
 void PmergeMe::putContainer(std::vector<int>& v)
 {
