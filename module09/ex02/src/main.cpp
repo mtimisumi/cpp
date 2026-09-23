@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 // {
 // 	std::vector<int> v;
 // 	for (int i = 0; i < amount; i++)
-// 		v.push_back(rand() % 1000);
+// 		v.push_back(rand() % 100);
 
 // 	return v;
 // }
@@ -89,35 +89,20 @@ int main(int argc, char *argv[])
 // 		seeded = true;
 // 	}
 
-// 	PmergeMe p;
-
 // 	std::vector<int> v1 = getRandomVector(25);
-// 	p.putContainer(v1);
-// 	p.FordJohnson();
-// 	p.validateContainer();
+// 	std::vector<int> v2 = getRandomShuffle(5462);
 
-// 	std::vector<int> v2 = getRandomShuffle(101);
-// 	p.putContainer(v2);
-// 	p.FordJohnson();
-// 	p.validateContainer();
-
-// 	std::vector<int> v3 = getRandomVector(300);
-// 	p.putContainer(v3);
-// 	p.FordJohnson();
-// 	p.validateContainer();
-
-// 	std::vector<int> v4 = getRandomShuffle(700);
-// 	p.putContainer(v4);
-// 	p.FordJohnson();
-// 	p.validateContainer();
-
-// 	std::vector<int> v5 = getRandomVector(3001);
-// 	p.putContainer(v5);
-// 	p.FordJohnson();
-// 	p.validateContainer();
-
-// 	std::vector<int> v6 = getRandomShuffle(3049);
-// 	p.putContainer(v6);
-// 	p.FordJohnson();
-// 	p.validateContainer();
+// 	PmergeMe p;
+// 	try
+// 	{
+// 		p.putContainer(v1);
+// 		p.FordJohnson();
+// 		p.putContainer(v2);
+// 		p.FordJohnson();
+// 	}
+// 	catch (const std::exception& e)
+// 	{
+// 		std::cerr << "error: " << e.what() << "\n";
+// 		return 1;
+// 	}
 // }

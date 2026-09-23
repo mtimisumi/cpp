@@ -21,6 +21,9 @@ PmergeMe::~PmergeMe() {}
 
 void PmergeMe::addNumber(int value)
 {
+	if (_vec.size() == 5462)
+		throw std::length_error("number amount cannot exceed 5462");
+
 	_vec.push_back({value, NULL, NULL});
 	_deq.push_back({value, NULL, NULL});
 }
@@ -78,6 +81,9 @@ std::ostream& operator<<(std::ostream& os, const element& e)
 
 void PmergeMe::putContainer(std::vector<int>& v)
 {
+	if (v.size() > 5462)
+		throw std::length_error("number amount cannot exceed 5462");
+
 	_vec.clear();
 	_deq.clear();
 

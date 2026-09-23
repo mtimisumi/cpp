@@ -29,7 +29,7 @@ int binaryInsert(Container& c, element& e, int index)
 	return low;
 }
 
-const int JacobSthal[] = { 0, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461};
+const int JacobSthal[] = { 0, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731};
 
 template<typename Container>
 Container JacobSthalSort(Container& c, element& saved)
@@ -66,7 +66,6 @@ Container JacobSthalSort(Container& c, element& saved)
 				next = c[i-1];
 
 			int pairIndex = binaryInsert(c, pair, cIndex[i]);
-
 			updateCIndex(cIndex, pairIndex);
 		}
 		jacob++;
@@ -159,7 +158,7 @@ void printContainer(Container& c, const std::string& msg)
 {
 	std::cout << msg;
 
-	for (size_t i = 0; i < 10; i++)
+	for (size_t i = 0; i < SHOW_NUMBERS; i++)
 	{
 		if (i == c.size())
 			break ;
@@ -167,7 +166,7 @@ void printContainer(Container& c, const std::string& msg)
 		std::cout << c[i] << " ";
 	}
 
-	if (c.size() > 10)
+	if (c.size() > SHOW_NUMBERS)
 		std::cout << "[...]";
 
 	std::cout << "\n";
