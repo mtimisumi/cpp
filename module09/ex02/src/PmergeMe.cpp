@@ -34,7 +34,7 @@ void PmergeMe::FordJohnson()
 	comparisons = 0;
 	size_t elementCount = _vec.size();
 
-	printContainer(_vec, "\nBefore:\t");
+	printContainer(_vec, "Before:\t");
 
 	std::chrono::high_resolution_clock::time_point vStart = std::chrono::high_resolution_clock::now();
 	_vec = mergeInsertionSort(_vec);
@@ -79,18 +79,6 @@ std::ostream& operator<<(std::ostream& os, const element& e)
 	return os << e.value;
 }
 
-void PmergeMe::putContainer(std::vector<int>& v)
-{
-	if (v.size() > 5462)
-		throw std::length_error("number amount cannot exceed 5462");
-
-	_vec.clear();
-	_deq.clear();
-
-	for (size_t i = 0; i < v.size(); i++)
-		this->addNumber(v[i]);
-}
-
 const char* const GREEN = "\033[32m";
 const char* const RED = "\033[31m";
 const char* const RESET = "\033[0m";
@@ -105,3 +93,19 @@ void PmergeMe::validateContainer()
 	std::cout << " with " << (myComparisons <= maxComparisons ? GREEN : RED) << myComparisons << RESET << " comparisons, ";
 	std::cout << "max amount of comparisons " << RED << maxComparisons << RESET << "\n\n";
 }
+
+// void PmergeMe::putContainer(std::vector<int>& v)
+// {
+// 	if (v.size() < 1)
+// 		throw std::length_error("need atleast one number in container");
+// 	if (v.size() > 5462)
+// 		throw std::length_error("number amount cannot exceed 5462");
+
+// 	_vec.clear();
+// 	_deq.clear();
+
+// 	for (size_t i = 0; i < v.size(); i++)
+// 		this->addNumber(v[i]);
+// }
+
+

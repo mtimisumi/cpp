@@ -39,7 +39,7 @@ int getMaxComparisons(int nbCount)
 int main(int argc, char *argv[])
 {
 	if (argc < 2) {
-		std::cerr << "Error: Need more arguments\n";
+		std::cerr << "Error: need atleast one argument\n";
 		return 1;
 	}
 
@@ -56,29 +56,29 @@ int main(int argc, char *argv[])
 	}
 }
 
-// std::vector<int> getRandomVector(int amount)
-// {
-// 	std::vector<int> v;
-// 	for (int i = 0; i < amount; i++)
-// 		v.push_back(rand() % 100);
+std::vector<int> getRandomVector(int amount)
+{
+	std::vector<int> v;
+	for (int i = 0; i < amount; i++)
+		v.push_back(rand() % 100);
 
-// 	return v;
-// }
+	return v;
+}
 
-// std::vector<int> getRandomShuffle(int amount)
-// {
-// 	std::vector<int> v;
-// 	for (int i = 0; i < amount; i++)
-// 		v.push_back(i);
+std::vector<int> getRandomShuffle(int amount)
+{
+	std::vector<int> v;
+	for (int i = 0; i < amount; i++)
+		v.push_back(i);
 
-// 	for (size_t i = v.size()-1; i > 0; i--)
-// 	{
-// 		size_t j = std::rand() % (i+1);
-// 		std::swap(v[i], v[j]);
-// 	}
+	for (size_t i = v.size()-1; i > 0; i--)
+	{
+		size_t j = std::rand() % (i+1);
+		std::swap(v[i], v[j]);
+	}
 
-// 	return v;
-// }
+	return v;
+}
 
 // int main()
 // {
@@ -89,8 +89,8 @@ int main(int argc, char *argv[])
 // 		seeded = true;
 // 	}
 
-// 	std::vector<int> v1 = getRandomVector(25);
-// 	std::vector<int> v2 = getRandomShuffle(5462);
+// 	std::vector<int> v1 = getRandomVector(1);
+// 	std::vector<int> v2 = getRandomShuffle(3000);
 
 // 	PmergeMe p;
 // 	try
@@ -102,7 +102,7 @@ int main(int argc, char *argv[])
 // 	}
 // 	catch (const std::exception& e)
 // 	{
-// 		std::cerr << "error: " << e.what() << "\n";
+// 		std::cerr << "Error: " << e.what() << "\n";
 // 		return 1;
 // 	}
 // }

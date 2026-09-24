@@ -39,8 +39,8 @@ class PmergeMe
 
 		void addNumber(int value);
 		void FordJohnson();
-		void putContainer(std::vector<int>& v);
 		void validateContainer();
+		// void putContainer(std::vector<int>& v);
 };
 
 template<typename Container> int binaryInsert(Container& c, element& e, int index);
