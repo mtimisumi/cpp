@@ -180,8 +180,8 @@ bool isSorted(Container& c)
 	if (c.size() < 2)
 		return true;
 
-	std::vector<element>::iterator it = c.begin();
-	std::vector<element>::iterator next = std::next(it);
+	Container::iterator it = c.begin();
+	Container::iterator next = std::next(it);
 
 	for (; next != c.end(); it++, next++)
 	{
